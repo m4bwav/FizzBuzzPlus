@@ -5,9 +5,9 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace FizzBuzzTest
 {
     [TestClass]
-    public class FizzBuzzBehavior
+    public class FizzBuzzDefaultBehavior
     {
-        private FizzBuzzExecutor _fizzBuzz;
+        private FizzBuzzProcessor _fizzBuzz;
         private TextWriter _writer;
 
         [TestInitialize]
@@ -15,7 +15,7 @@ namespace FizzBuzzTest
         {
             _writer = new StringWriter();
 
-            _fizzBuzz = new FizzBuzzExecutor(_writer);
+            _fizzBuzz = new FizzBuzzProcessor(_writer);
         }
 
         [TestMethod]

@@ -3,11 +3,11 @@ using FizzBuzzLibrary;
 
 namespace FizzBuzzWithOutput
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main()
         {
-            var fizzBuzz = new FizzBuzzExecutor(Console.Out);
+            var fizzBuzz = new FizzBuzzProcessor(Console.Out);
 
             fizzBuzz.Execute(15, 30);
 
