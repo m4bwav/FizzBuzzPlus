@@ -46,6 +46,7 @@ namespace GoldenCapture
             root.Add("runtime", RuntimeInformation.FrameworkDescription);
             root.Add("os", os);
             root.Add("process", Environment.Is64BitProcess ? "64-bit" : "32-bit");
+            root.Add("architecture", RuntimeInformation.ProcessArchitecture.ToString().ToLowerInvariant());
             root.Add("culture", "invariant, except the culture cases");
             root.Add("captured", DateTime.UtcNow.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture));
             root.Add("note", "Golden outputs of the 2014 FizzBuzzPlus source, recorded by tests/Golden/Capture. Never edit; never regenerate from new code.");
