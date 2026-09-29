@@ -1,0 +1,3 @@
+# The golden recordings and the frozen 2014 source are compared byte for byte: never let a checkout rewrite them.
+tests/Golden/Original/** -text
+tests/Golden/*.json -text

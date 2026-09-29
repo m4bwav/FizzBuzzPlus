@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    Golden capture of the 2014 FizzBuzzPlus source (package-modernize, repository variant, Phase 0). The repository never
+    published a package, so the reference is the frozen source in ../Original, compiled here unchanged by link. It runs on
+    net48 (the .NET Framework the code was written for) and on net10.0 (the same source on today's runtime), one
+    recording per runtime. Run it through ../capture.sh, which builds ../OriginalApp first and names the output files.
+    The Directory.* files in ../ are empty on purpose: they stop MSBuild from importing the repository's own props, so
+    later changes to the repository cannot change this recording.
+  -->
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFrameworks>net10.0;net48</TargetFrameworks>
+    <LangVersion>latest</LangVersion>
+    <Nullable>disable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
+    <RestorePackagesWithLockFile>false</RestorePackagesWithLockFile>
+    <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
+    <RootNamespace>GoldenCapture</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="../Original/FizzBuzzProcessor.cs" Link="Original/FizzBuzzProcessor.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3" PrivateAssets="all" />
+  </ItemGroup>
+
+</Project>
