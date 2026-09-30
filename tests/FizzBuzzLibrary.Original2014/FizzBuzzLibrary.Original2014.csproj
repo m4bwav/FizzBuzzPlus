@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    The frozen 2014 FizzBuzzProcessor.cs (tests/Golden/Original), compiled unchanged into an assembly of its own, so the
+    differential test can run the 2014 code beside the new one (referenced with the extern alias Original2014).
+  -->
+
+  <PropertyGroup>
+    <AssemblyName>FizzBuzzLibrary.Original2014</AssemblyName>
+    <Nullable>disable</Nullable>
+    <GenerateDocumentationFile>false</GenerateDocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="../Golden/Original/FizzBuzzProcessor.cs" Link="Original/FizzBuzzProcessor.cs" />
+  </ItemGroup>
+
+</Project>

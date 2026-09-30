@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    Unit tests for 2.0.0, and the 7 tests of 2014 (tests/Golden/Original/FizzBuzz*Behavior.cs), compiled here unchanged
+    by link: the 2014 author's own expectations are part of the promise (plan D1). MSTest, because those files are
+    MSTest (plan D9). The frozen files keep their swapped Assert.AreEqual arguments; the analyzers skip them
+    (.editorconfig, tests/Golden).
+  -->
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <IsTestProject>true</IsTestProject>
+    <EnableMSTestRunner>true</EnableMSTestRunner>
+    <GenerateDocumentationFile>false</GenerateDocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="../Golden/Original/FizzBuzzCustomBehavior.cs" Link="Original2014/FizzBuzzCustomBehavior.cs" />
+    <Compile Include="../Golden/Original/FizzBuzzDefaultBehavior.cs" Link="Original2014/FizzBuzzDefaultBehavior.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="../../src/FizzBuzzLibrary/FizzBuzzLibrary.csproj" />
+    <ProjectReference Include="../../src/FizzBuzzWithOutput/FizzBuzzWithOutput.csproj" />
+    <!-- The frozen 2014 source as an assembly of its own, for the differential test. -->
+    <ProjectReference Include="../FizzBuzzLibrary.Original2014/FizzBuzzLibrary.Original2014.csproj" Aliases="Original2014" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MSTest" Version="4.4.1" />
+  </ItemGroup>
+
+</Project>

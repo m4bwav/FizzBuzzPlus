@@ -1,0 +1,7 @@
+# Keep LF everywhere so dotnet format (end_of_line = lf in .editorconfig) agrees on every OS.
+* text=auto eol=lf
+*.png binary
+
+# The golden recordings and the frozen 2014 source are compared byte for byte: never let a checkout rewrite them.
+tests/Golden/Original/** -text
+tests/Golden/*.json -text

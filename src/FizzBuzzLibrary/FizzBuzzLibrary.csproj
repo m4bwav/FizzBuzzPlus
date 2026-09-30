@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <AssemblyName>FizzBuzzLibrary</AssemblyName>
+    <RootNamespace>FizzBuzzLibrary</RootNamespace>
+    <Description>FizzBuzz with custom rules: writes one line per number to a TextWriter.</Description>
+    <!-- The app is published trimmed; the analyzers keep the library safe for it. -->
+    <IsAotCompatible>true</IsAotCompatible>
+    <!-- The app's release publish (dotnet publish -r RID) restores this project for each RID in locked mode, so its lock
+         file must list the same runtime identifiers as the app's (NU1004 otherwise). -->
+    <RuntimeIdentifiers>win-x64;win-arm64;linux-x64;linux-arm64;osx-x64;osx-arm64</RuntimeIdentifiers>
+  </PropertyGroup>
+
+</Project>

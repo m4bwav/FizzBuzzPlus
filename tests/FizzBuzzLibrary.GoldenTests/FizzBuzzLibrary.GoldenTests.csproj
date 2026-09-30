@@ -1,0 +1,35 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    The golden replay (plan D1): the Phase 0 capture's cases (tests/Golden/Capture/Cases.cs and Json.cs, compiled here
+    unchanged) run against this repository's library and app, and each answer is compared with what the 2014 source
+    answered on the same runtime and OS (tests/Golden/1.0.0.net10.0-<os>.json). The only allowed differences are the
+    ruled exceptions E1 to E7 in Exceptions/2.0.0.json. A project of its own, so no other test shares its process
+    (skill L-072 golden-alone-in-process).
+  -->
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <IsTestProject>true</IsTestProject>
+    <EnableMSTestRunner>true</EnableMSTestRunner>
+    <GenerateDocumentationFile>false</GenerateDocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Frozen since the Phase 0 commit 2835ec0; never edit them to make a test pass. -->
+    <Compile Include="../Golden/Capture/Cases.cs" Link="Capture/Cases.cs" />
+    <Compile Include="../Golden/Capture/Json.cs" Link="Capture/Json.cs" />
+    <None Include="../Golden/*.json" LinkBase="Golden" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="Exceptions/*.json" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="../../src/FizzBuzzLibrary/FizzBuzzLibrary.csproj" />
+    <ProjectReference Include="../../src/FizzBuzzWithOutput/FizzBuzzWithOutput.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MSTest" Version="4.4.1" />
+  </ItemGroup>
+
+</Project>

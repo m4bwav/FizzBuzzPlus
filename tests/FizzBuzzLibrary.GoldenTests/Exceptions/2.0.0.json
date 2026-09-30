@@ -1,0 +1,447 @@
+{
+  "note": "The ruled changes of 2.0.0 (plan E1 to E7): every case the new code answers differently from the 2014 recording, with the change it belongs to and the new answer. Made from the replay's difference list (FIZZBUZZPLUS_WRITE_DIFFERENCES) on Windows and reviewed case by case on 2026-09-29; the same answers hold on Linux and macOS.",
+  "cases": [
+    {
+      "group": "edge",
+      "name": "Execute(long.MaxValue) (stopped by the capture)",
+      "change": "E1",
+      "result": {
+        "output": "Current Number: 9223372036854775807 \u000a",
+        "error": null,
+        "stoppedByCaptureAfterLines": null
+      }
+    },
+    {
+      "group": "edge",
+      "name": "Execute(long.MaxValue - 2, long.MaxValue) (stopped by the capture)",
+      "change": "E1",
+      "result": {
+        "output": "Current Number: 9223372036854775805 Buzz\u000aCurrent Number: 9223372036854775806 Fizz\u000aCurrent Number: 9223372036854775807 \u000a",
+        "error": null,
+        "stoppedByCaptureAfterLines": null
+      }
+    },
+    {
+      "group": "rules",
+      "name": "divisor 0: Execute(1, 2)",
+      "change": "E3",
+      "result": {
+        "output": "",
+        "error": {
+          "phase": "construct",
+          "type": "System.ArgumentException",
+          "message": "A rule cannot have the divisor 0: no number is a multiple of 0. (Parameter 'outputBreaks')",
+          "param": "outputBreaks",
+          "from": "library"
+        },
+        "stoppedByCaptureAfterLines": null
+      }
+    },
+    {
+      "group": "rules",
+      "name": "divisor 0 and 3 (0 sorts first): Execute(3)",
+      "change": "E3",
+      "result": {
+        "output": "",
+        "error": {
+          "phase": "construct",
+          "type": "System.ArgumentException",
+          "message": "A rule cannot have the divisor 0: no number is a multiple of 0. (Parameter 'outputBreaks')",
+          "param": "outputBreaks",
+          "from": "library"
+        },
+        "stoppedByCaptureAfterLines": null
+      }
+    },
+    {
+      "group": "rules",
+      "name": "divisor 0 with an empty range: Execute(2, 1)",
+      "change": "E3",
+      "result": {
+        "output": "",
+        "error": {
+          "phase": "construct",
+          "type": "System.ArgumentException",
+          "message": "A rule cannot have the divisor 0: no number is a multiple of 0. (Parameter 'outputBreaks')",
+          "param": "outputBreaks",
+          "from": "library"
+        },
+        "stoppedByCaptureAfterLines": null
+      }
+    },
+    {
+      "group": "rules",
+      "name": "divisor -1: Execute(long.MinValue)",
+      "change": "E4",
+      "result": {
+        "output": "Current Number: -9223372036854775808 MinusOne\u000a",
+        "error": null,
+        "stoppedByCaptureAfterLines": null
+      }
+    },
+    {
+      "group": "rules",
+      "name": "divisor 2 and -1: Execute(long.MinValue)",
+      "change": "E4",
+      "result": {
+        "output": "Current Number: -9223372036854775808 MinusOneEven\u000a",
+        "error": null,
+        "stoppedByCaptureAfterLines": null
+      }
+    },
+    {
+      "group": "null",
+      "name": "rules null: Execute(1)",
+      "change": "E5",
+      "result": {
+        "output": "",
+        "error": {
+          "phase": "construct",
+          "type": "System.ArgumentNullException",
+          "message": "Value cannot be null. (Parameter 'outputBreaks')",
+          "param": "outputBreaks",
+          "from": "System.Private.CoreLib"
+        },
+        "stoppedByCaptureAfterLines": null
+      }
+    },
+    {
+      "group": "null",
+      "name": "rules null: Execute(2, 1) (empty range)",
+      "change": "E5",
+      "result": {
+        "output": "",
+        "error": {
+          "phase": "construct",
+          "type": "System.ArgumentNullException",
+          "message": "Value cannot be null. (Parameter 'outputBreaks')",
+          "param": "outputBreaks",
+          "from": "System.Private.CoreLib"
+        },
+        "stoppedByCaptureAfterLines": null
+      }
+    },
+    {
+      "group": "null",
+      "name": "rules null: Execute()",
+      "change": "E5",
+      "result": {
+        "output": "",
+        "error": {
+          "phase": "construct",
+          "type": "System.ArgumentNullException",
+          "message": "Value cannot be null. (Parameter 'outputBreaks')",
+          "param": "outputBreaks",
+          "from": "System.Private.CoreLib"
+        },
+        "stoppedByCaptureAfterLines": null
+      }
+    },
+    {
+      "group": "null",
+      "name": "writer null, default rules: construct only",
+      "change": "E5",
+      "result": {
+        "output": "",
+        "error": {
+          "phase": "construct",
+          "type": "System.ArgumentNullException",
+          "message": "Value cannot be null. (Parameter 'writer')",
+          "param": "writer",
+          "from": "System.Private.CoreLib"
+        },
+        "stoppedByCaptureAfterLines": null
+      }
+    },
+    {
+      "group": "null",
+      "name": "writer null, default rules: Execute(1)",
+      "change": "E5",
+      "result": {
+        "output": "",
+        "error": {
+          "phase": "construct",
+          "type": "System.ArgumentNullException",
+          "message": "Value cannot be null. (Parameter 'writer')",
+          "param": "writer",
+          "from": "System.Private.CoreLib"
+        },
+        "stoppedByCaptureAfterLines": null
+      }
+    },
+    {
+      "group": "null",
+      "name": "writer null, default rules: Execute(2, 1) (empty range)",
+      "change": "E5",
+      "result": {
+        "output": "",
+        "error": {
+          "phase": "construct",
+          "type": "System.ArgumentNullException",
+          "message": "Value cannot be null. (Parameter 'writer')",
+          "param": "writer",
+          "from": "System.Private.CoreLib"
+        },
+        "stoppedByCaptureAfterLines": null
+      }
+    },
+    {
+      "group": "null",
+      "name": "writer null, custom rules: Execute(1)",
+      "change": "E5",
+      "result": {
+        "output": "",
+        "error": {
+          "phase": "construct",
+          "type": "System.ArgumentNullException",
+          "message": "Value cannot be null. (Parameter 'writer')",
+          "param": "writer",
+          "from": "System.Private.CoreLib"
+        },
+        "stoppedByCaptureAfterLines": null
+      }
+    },
+    {
+      "group": "null",
+      "name": "rules and writer null: construct only",
+      "change": "E5",
+      "result": {
+        "output": "",
+        "error": {
+          "phase": "construct",
+          "type": "System.ArgumentNullException",
+          "message": "Value cannot be null. (Parameter 'outputBreaks')",
+          "param": "outputBreaks",
+          "from": "System.Private.CoreLib"
+        },
+        "stoppedByCaptureAfterLines": null
+      }
+    },
+    {
+      "group": "null",
+      "name": "rules and writer null: Execute(1)",
+      "change": "E5",
+      "result": {
+        "output": "",
+        "error": {
+          "phase": "construct",
+          "type": "System.ArgumentNullException",
+          "message": "Value cannot be null. (Parameter 'outputBreaks')",
+          "param": "outputBreaks",
+          "from": "System.Private.CoreLib"
+        },
+        "stoppedByCaptureAfterLines": null
+      }
+    },
+    {
+      "group": "aliasing",
+      "name": "rule added after construction: Execute(15)",
+      "change": "E6",
+      "result": {
+        "output": "Current Number: 15 Fizz\u000a",
+        "error": null,
+        "stoppedByCaptureAfterLines": null
+      }
+    },
+    {
+      "group": "aliasing",
+      "name": "rule removed between two calls: Execute(3), Execute(3)",
+      "change": "E6",
+      "result": {
+        "output": "Current Number: 3 Fizz\u000aCurrent Number: 3 Fizz\u000a",
+        "error": null,
+        "stoppedByCaptureAfterLines": null
+      }
+    },
+    {
+      "group": "aliasing",
+      "name": "rules cleared after construction: Execute(15)",
+      "change": "E6",
+      "result": {
+        "output": "Current Number: 15 FizzBuzz\u000a",
+        "error": null,
+        "stoppedByCaptureAfterLines": null
+      }
+    },
+    {
+      "group": "aliasing",
+      "name": "rule added by the writer after the first line: Execute(1, 4)",
+      "change": "E6",
+      "result": {
+        "output": "Current Number: 1 \u000aCurrent Number: 2 \u000aCurrent Number: 3 \u000aCurrent Number: 4 \u000a",
+        "error": null,
+        "stoppedByCaptureAfterLines": null
+      }
+    },
+    {
+      "group": "aliasing",
+      "name": "rule added by the writer while words are written: Execute(12), Execute(4)",
+      "change": "E6",
+      "result": {
+        "output": "Current Number: 12 FizzSix\u000aCurrent Number: 4 \u000a",
+        "error": null,
+        "stoppedByCaptureAfterLines": null
+      }
+    },
+    {
+      "group": "culture",
+      "name": "sv-SE",
+      "change": "E2",
+      "result": {
+        "negativeSign": "\u2212",
+        "default Execute(-15)": {
+          "output": "Current Number: -15 FizzBuzz\u000a",
+          "error": null,
+          "stoppedByCaptureAfterLines": null
+        },
+        "default Execute(-2, 2)": {
+          "output": "Current Number: -2 \u000aCurrent Number: -1 \u000aCurrent Number: 0 FizzBuzz\u000aCurrent Number: 1 \u000aCurrent Number: 2 \u000a",
+          "error": null,
+          "stoppedByCaptureAfterLines": null
+        },
+        "default Execute(1234567)": {
+          "output": "Current Number: 1234567 \u000a",
+          "error": null,
+          "stoppedByCaptureAfterLines": null
+        },
+        "default Execute(long.MinValue)": {
+          "output": "Current Number: -9223372036854775808 \u000a",
+          "error": null,
+          "stoppedByCaptureAfterLines": null
+        }
+      }
+    },
+    {
+      "group": "culture",
+      "name": "nb-NO",
+      "change": "E2",
+      "result": {
+        "negativeSign": "\u2212",
+        "default Execute(-15)": {
+          "output": "Current Number: -15 FizzBuzz\u000a",
+          "error": null,
+          "stoppedByCaptureAfterLines": null
+        },
+        "default Execute(-2, 2)": {
+          "output": "Current Number: -2 \u000aCurrent Number: -1 \u000aCurrent Number: 0 FizzBuzz\u000aCurrent Number: 1 \u000aCurrent Number: 2 \u000a",
+          "error": null,
+          "stoppedByCaptureAfterLines": null
+        },
+        "default Execute(1234567)": {
+          "output": "Current Number: 1234567 \u000a",
+          "error": null,
+          "stoppedByCaptureAfterLines": null
+        },
+        "default Execute(long.MinValue)": {
+          "output": "Current Number: -9223372036854775808 \u000a",
+          "error": null,
+          "stoppedByCaptureAfterLines": null
+        }
+      }
+    },
+    {
+      "group": "culture",
+      "name": "he-IL",
+      "change": "E2",
+      "result": {
+        "negativeSign": "\u200e-",
+        "default Execute(-15)": {
+          "output": "Current Number: -15 FizzBuzz\u000a",
+          "error": null,
+          "stoppedByCaptureAfterLines": null
+        },
+        "default Execute(-2, 2)": {
+          "output": "Current Number: -2 \u000aCurrent Number: -1 \u000aCurrent Number: 0 FizzBuzz\u000aCurrent Number: 1 \u000aCurrent Number: 2 \u000a",
+          "error": null,
+          "stoppedByCaptureAfterLines": null
+        },
+        "default Execute(1234567)": {
+          "output": "Current Number: 1234567 \u000a",
+          "error": null,
+          "stoppedByCaptureAfterLines": null
+        },
+        "default Execute(long.MinValue)": {
+          "output": "Current Number: -9223372036854775808 \u000a",
+          "error": null,
+          "stoppedByCaptureAfterLines": null
+        }
+      }
+    },
+    {
+      "group": "culture",
+      "name": "fa-IR",
+      "change": "E2",
+      "result": {
+        "negativeSign": "\u200e\u2212",
+        "default Execute(-15)": {
+          "output": "Current Number: -15 FizzBuzz\u000a",
+          "error": null,
+          "stoppedByCaptureAfterLines": null
+        },
+        "default Execute(-2, 2)": {
+          "output": "Current Number: -2 \u000aCurrent Number: -1 \u000aCurrent Number: 0 FizzBuzz\u000aCurrent Number: 1 \u000aCurrent Number: 2 \u000a",
+          "error": null,
+          "stoppedByCaptureAfterLines": null
+        },
+        "default Execute(1234567)": {
+          "output": "Current Number: 1234567 \u000a",
+          "error": null,
+          "stoppedByCaptureAfterLines": null
+        },
+        "default Execute(long.MinValue)": {
+          "output": "Current Number: -9223372036854775808 \u000a",
+          "error": null,
+          "stoppedByCaptureAfterLines": null
+        }
+      }
+    },
+    {
+      "group": "culture",
+      "name": "ar-SA",
+      "change": "E2",
+      "result": {
+        "negativeSign": "\u061c-",
+        "default Execute(-15)": {
+          "output": "Current Number: -15 FizzBuzz\u000a",
+          "error": null,
+          "stoppedByCaptureAfterLines": null
+        },
+        "default Execute(-2, 2)": {
+          "output": "Current Number: -2 \u000aCurrent Number: -1 \u000aCurrent Number: 0 FizzBuzz\u000aCurrent Number: 1 \u000aCurrent Number: 2 \u000a",
+          "error": null,
+          "stoppedByCaptureAfterLines": null
+        },
+        "default Execute(1234567)": {
+          "output": "Current Number: 1234567 \u000a",
+          "error": null,
+          "stoppedByCaptureAfterLines": null
+        },
+        "default Execute(long.MinValue)": {
+          "output": "Current Number: -9223372036854775808 \u000a",
+          "error": null,
+          "stoppedByCaptureAfterLines": null
+        }
+      }
+    },
+    {
+      "group": "app",
+      "name": "no arguments, standard input redirected and empty",
+      "change": "E7",
+      "result": {
+        "stdout": "Current Number: 15 FizzBuzz\u000aCurrent Number: 16 \u000aCurrent Number: 17 \u000aCurrent Number: 18 Fizz\u000aCurrent Number: 19 \u000aCurrent Number: 20 Buzz\u000aCurrent Number: 21 Fizz\u000aCurrent Number: 22 \u000aCurrent Number: 23 \u000aCurrent Number: 24 Fizz\u000aCurrent Number: 25 Buzz\u000aCurrent Number: 26 \u000aCurrent Number: 27 Fizz\u000aCurrent Number: 28 \u000aCurrent Number: 29 \u000aCurrent Number: 30 FizzBuzz\u000a",
+        "exitCode": 0,
+        "stderrFirstLine": ""
+      }
+    },
+    {
+      "group": "app",
+      "name": "arguments 1 5, standard input redirected and empty",
+      "change": "E7",
+      "result": {
+        "stdout": "Current Number: 1 \u000aCurrent Number: 2 \u000aCurrent Number: 3 Fizz\u000aCurrent Number: 4 \u000aCurrent Number: 5 Buzz\u000a",
+        "exitCode": 0,
+        "stderrFirstLine": ""
+      }
+    }
+  ]
+}

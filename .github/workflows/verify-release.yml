@@ -1,0 +1,73 @@
+# After a Release is published (or by hand for any tag): downloads each platform's archive from the Release on a fresh
+# runner of that platform, checks it against SHA256SUMS and its build provenance attestation (made by release.yml in
+# this repository), unpacks it and runs the program. osx-x64 has no free hosted runner, so it is checked but not run.
+# The repository variant's verify-published: the Release is the registry.
+name: verify-release
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: The release tag to verify, for example v2.0.0
+        required: true
+
+permissions:
+  contents: read
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  verify:
+    name: verify ${{ matrix.rid }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - { rid: linux-x64, os: ubuntu-24.04, run: true }
+          - { rid: linux-arm64, os: ubuntu-24.04-arm, run: true }
+          - { rid: win-x64, os: windows-latest, run: true }
+          - { rid: win-arm64, os: windows-11-arm, run: true }
+          - { rid: osx-arm64, os: macos-latest, run: true }
+          - { rid: osx-x64, os: ubuntu-24.04, run: false }
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 15
+    permissions:
+      contents: read
+      attestations: read
+    steps:
+      - name: Download, check and run
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ github.event.release.tag_name || inputs.tag }}
+          RID: ${{ matrix.rid }}
+          RUN: ${{ matrix.run }}
+        run: |
+          version="${TAG#v}"
+          name="fizzbuzzplus-$version-$RID"
+          if [[ "$RID" == win-* ]]; then archive="$name.zip"; exe=fizzbuzzplus.exe; else archive="$name.tar.gz"; exe=fizzbuzzplus; fi
+          gh release download "$TAG" --repo "$GITHUB_REPOSITORY" --pattern "$archive" --pattern SHA256SUMS
+          line=$(grep -F "  $archive" SHA256SUMS)
+          if command -v sha256sum > /dev/null; then echo "$line" | sha256sum -c -; else echo "$line" | shasum -a 256 -c -; fi
+          gh attestation verify "$archive" --repo "$GITHUB_REPOSITORY" --signer-workflow "$GITHUB_REPOSITORY/.github/workflows/release.yml" --source-ref "refs/tags/$TAG" --format json > attestation.json
+          echo "attestation verified: $(wc -c < attestation.json) bytes"
+          if [[ "$archive" == *.zip ]]; then unzip -q "$archive"; else tar -xzf "$archive"; fi
+          test -f "$name/$exe" && test -f "$name/LICENSE"
+          if [ "$RUN" = true ]; then
+            "$name/$exe" 13 15 > smoke.txt
+            printf 'Current Number: 13 \nCurrent Number: 14 \nCurrent Number: 15 FizzBuzz\n' > expected.txt
+            cmp smoke.txt expected.txt
+            "$name/$exe" -3 1 --rule 2=Even > rules.txt
+            printf 'Current Number: -3 \nCurrent Number: -2 Even\nCurrent Number: -1 \nCurrent Number: 0 Even\nCurrent Number: 1 \n' > expected-rules.txt
+            cmp rules.txt expected-rules.txt
+            set +e
+            "$name/$exe" 1 2 3 2> usage.txt
+            code=$?
+            set -e
+            test "$code" -eq 2
+            grep -q "Usage: fizzbuzzplus" usage.txt
+          fi
+          echo "verified $archive"

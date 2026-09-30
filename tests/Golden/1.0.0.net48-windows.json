@@ -1,0 +1,1235 @@
+{
+  "source": "FizzBuzzLibrary/FizzBuzzProcessor.cs at commit d13d130 (2014-04-12), frozen in tests/Golden/Original",
+  "sourceGitBlob": "aa159b7ea8d38085210a17af15428cfc0f133a23",
+  "sourceSha256": "1b1fbe284c810e576625bf4f4afab94e5a131d238f1651721298ac0970bace13",
+  "app": "FizzBuzzWithOutput/Program.cs at commit d13d130, built by tests/Golden/OriginalApp for the same runtime",
+  "runtime": ".NET Framework 4.8.9345.0",
+  "os": "windows",
+  "process": "64-bit",
+  "architecture": "x64",
+  "culture": "invariant, except the culture cases",
+  "captured": "2026-09-29",
+  "note": "Golden outputs of the 2014 FizzBuzzPlus source, recorded by tests/Golden/Capture. Never edit; never regenerate from new code.",
+  "caseCount": 108,
+  "cases": [
+    {
+      "group": "api",
+      "name": "public and protected surface of namespace FizzBuzzLibrary",
+      "result": [
+        "class FizzBuzzLibrary.FizzBuzzProcessor : System.Object",
+        "  ctor FizzBuzzProcessor(System.Collections.Generic.IDictionary<System.Int64, System.String> outputBreaks, System.IO.TextWriter writer)",
+        "  ctor FizzBuzzProcessor(System.IO.TextWriter writer)",
+        "  method System.Void Execute()",
+        "  method System.Void Execute(System.Int64 singleValue)",
+        "  method System.Void Execute(System.Int64 startValue, System.Int64 endValue)"
+      ]
+    },
+    {
+      "group": "default",
+      "name": "Execute()",
+      "result": {
+        "output": "Current Number: 1 \u000aCurrent Number: 2 \u000aCurrent Number: 3 Fizz\u000aCurrent Number: 4 \u000aCurrent Number: 5 Buzz\u000aCurrent Number: 6 Fizz\u000aCurrent Number: 7 \u000aCurrent Number: 8 \u000aCurrent Number: 9 Fizz\u000aCurrent Number: 10 Buzz\u000aCurrent Number: 11 \u000aCurrent Number: 12 Fizz\u000aCurrent Number: 13 \u000aCurrent Number: 14 \u000aCurrent Number: 15 FizzBuzz\u000aCurrent Number: 16 \u000aCurrent Number: 17 \u000aCurrent Number: 18 Fizz\u000aCurrent Number: 19 \u000aCurrent Number: 20 Buzz\u000aCurrent Number: 21 Fizz\u000aCurrent Number: 22 \u000aCurrent Number: 23 \u000aCurrent Number: 24 Fizz\u000aCurrent Number: 25 Buzz\u000aCurrent Number: 26 \u000aCurrent Number: 27 Fizz\u000aCurrent Number: 28 \u000aCurrent Number: 29 \u000aCurrent Number: 30 FizzBuzz\u000aCurrent Number: 31 \u000aCurrent Number: 32 \u000aCurrent Number: 33 Fizz\u000aCurrent Number: 34 \u000aCurrent Number: 35 Buzz\u000aCurrent Number: 36 Fizz\u000aCurrent Number: 37 \u000aCurrent Number: 38 \u000aCurrent Number: 39 Fizz\u000aCurrent Number: 40 Buzz\u000aCurrent Number: 41 \u000aCurrent Number: 42 Fizz\u000aCurrent Number: 43 \u000aCurrent Number: 44 \u000aCurrent Number: 45 FizzBuzz\u000aCurrent Number: 46 \u000aCurrent Number: 47 \u000aCurrent Number: 48 Fizz\u000aCurrent Number: 49 \u000aCurrent Number: 50 Buzz\u000aCurrent Number: 51 Fizz\u000aCurrent Number: 52 \u000aCurrent Number: 53 \u000aCurrent Number: 54 Fizz\u000aCurrent Number: 55 Buzz\u000aCurrent Number: 56 \u000aCurrent Number: 57 Fizz\u000aCurrent Number: 58 \u000aCurrent Number: 59 \u000aCurrent Number: 60 FizzBuzz\u000aCurrent Number: 61 \u000aCurrent Number: 62 \u000aCurrent Number: 63 Fizz\u000aCurrent Number: 64 \u000aCurrent Number: 65 Buzz\u000aCurrent Number: 66 Fizz\u000aCurrent Number: 67 \u000aCurrent Number: 68 \u000aCurrent Number: 69 Fizz\u000aCurrent Number: 70 Buzz\u000aCurrent Number: 71 \u000aCurrent Number: 72 Fizz\u000aCurrent Number: 73 \u000aCurrent Number: 74 \u000aCurrent Number: 75 FizzBuzz\u000aCurrent Number: 76 \u000aCurrent Number: 77 \u000aCurrent Number: 78 Fizz\u000aCurrent Number: 79 \u000aCurrent Number: 80 Buzz\u000aCurrent Number: 81 Fizz\u000aCurrent Number: 82 \u000aCurrent Number: 83 \u000aCurrent Number: 84 Fizz\u000aCurrent Number: 85 Buzz\u000aCurrent Number: 86 \u000aCurrent Number: 87 Fizz\u000aCurrent Number: 88 \u000aCurrent Number: 89 \u000aCurrent Number: 90 FizzBuzz\u000aCurrent Number: 91 \u000aCurrent Number: 92 \u000aCurrent Number: 93 Fizz\u000aCurrent Number: 94 \u000aCurrent Number: 95 Buzz\u000aCurrent Number: 96 Fizz\u000aCurrent Number: 97 \u000aCurrent Number: 98 \u000aCurrent Number: 99 Fizz\u000aCurrent Number: 100 Buzz\u000a",
+        "error": null,
+        "stoppedByCaptureAfterLines": null
+      }
+    },
+    {
+      "group": "default",
+      "name": "Execute(1)",
+      "result": {
+        "output": "Current Number: 1 \u000a",
+        "error": null,
+        "stoppedByCaptureAfterLines": null
+      }
+    },
+    {
+      "group": "default",
+      "name": "Execute(2)",
+      "result": {
+        "output": "Current Number: 2 \u000a",
+        "error": null,
+        "stoppedByCaptureAfterLines": null
+      }
+    },
+    {
+      "group": "default",
+      "name": "Execute(3)",
+      "result": {
+        "output": "Current Number: 3 Fizz\u000a",
+        "error": null,
+        "stoppedByCaptureAfterLines": null
+      }
+    },
+    {
+      "group": "default",
+      "name": "Execute(5)",
+      "result": {
+        "output": "Current Number: 5 Buzz\u000a",
+        "error": null,
+        "stoppedByCaptureAfterLines": null
+      }
+    },
+    {
+      "group": "default",
+      "name": "Execute(9)",
+      "result": {
+        "output": "Current Number: 9 Fizz\u000a",
+        "error": null,
+        "stoppedByCaptureAfterLines": null
+      }
+    },
+    {
+      "group": "default",
+      "name": "Execute(10)",
+      "result": {
+        "output": "Current Number: 10 Buzz\u000a",
+        "error": null,
+        "stoppedByCaptureAfterLines": null
+      }
+    },
+    {
+      "group": "default",
+      "name": "Execute(15)",
+      "result": {
+        "output": "Current Number: 15 FizzBuzz\u000a",
+        "error": null,
+        "stoppedByCaptureAfterLines": null
+      }
+    },
+    {
+      "group": "default",
+      "name": "Execute(18)",
+      "result": {
+        "output": "Current Number: 18 Fizz\u000a",
+        "error": null,
+        "stoppedByCaptureAfterLines": null
+      }
+    },
+    {
+      "group": "default",
+      "name": "Execute(20)",
+      "result": {
+        "output": "Current Number: 20 Buzz\u000a",
+        "error": null,
+        "stoppedByCaptureAfterLines": null
+      }
+    },
+    {
+      "group": "default",
+      "name": "Execute(30)",
+      "result": {
+        "output": "Current Number: 30 FizzBuzz\u000a",
+        "error": null,
+        "stoppedByCaptureAfterLines": null
+      }
+    },
+    {
+      "group": "default",
+      "name": "Execute(45)",
+      "result": {
+        "output": "Current Number: 45 FizzBuzz\u000a",
+        "error": null,
+        "stoppedByCaptureAfterLines": null
+      }
+    },
+    {
+      "group": "default",
+      "name": "Execute(0)",
+      "result": {
+        "output": "Current Number: 0 FizzBuzz\u000a",
+        "error": null,
+        "stoppedByCaptureAfterLines": null
+      }
+    },
+    {
+      "group": "default",
+      "name": "Execute(-1)",
+      "result": {
+        "output": "Current Number: -1 \u000a",
+        "error": null,
+        "stoppedByCaptureAfterLines": null
+      }
+    },
+    {
+      "group": "default",
+      "name": "Execute(-3)",
+      "result": {
+        "output": "Current Number: -3 Fizz\u000a",
+        "error": null,
+        "stoppedByCaptureAfterLines": null
+      }
+    },
+    {
+      "group": "default",
+      "name": "Execute(-5)",
+      "result": {
+        "output": "Current Number: -5 Buzz\u000a",
+        "error": null,
+        "stoppedByCaptureAfterLines": null
+      }
+    },
+    {
+      "group": "default",
+      "name": "Execute(-15)",
+      "result": {
+        "output": "Current Number: -15 FizzBuzz\u000a",
+        "error": null,
+        "stoppedByCaptureAfterLines": null
+      }
+    },
+    {
+      "group": "default",
+      "name": "Execute(-9223372036854775808)",
+      "result": {
+        "output": "Current Number: -9223372036854775808 \u000a",
+        "error": null,
+        "stoppedByCaptureAfterLines": null
+      }
+    },
+    {
+      "group": "default",
+      "name": "Execute(-9223372036854775807)",
+      "result": {
+        "output": "Current Number: -9223372036854775807 \u000a",
+        "error": null,
+        "stoppedByCaptureAfterLines": null
+      }
+    },
+    {
+      "group": "default",
+      "name": "Execute(9223372036854775806)",
+      "result": {
+        "output": "Current Number: 9223372036854775806 Fizz\u000a",
+        "error": null,
+        "stoppedByCaptureAfterLines": null
+      }
+    },
+    {
+      "group": "default",
+      "name": "Execute(1, 15)",
+      "result": {
+        "output": "Current Number: 1 \u000aCurrent Number: 2 \u000aCurrent Number: 3 Fizz\u000aCurrent Number: 4 \u000aCurrent Number: 5 Buzz\u000aCurrent Number: 6 Fizz\u000aCurrent Number: 7 \u000aCurrent Number: 8 \u000aCurrent Number: 9 Fizz\u000aCurrent Number: 10 Buzz\u000aCurrent Number: 11 \u000aCurrent Number: 12 Fizz\u000aCurrent Number: 13 \u000aCurrent Number: 14 \u000aCurrent Number: 15 FizzBuzz\u000a",
+        "error": null,
+        "stoppedByCaptureAfterLines": null
+      }
+    },
+    {
+      "group": "default",
+      "name": "Execute(15, 30)",
+      "result": {
+        "output": "Current Number: 15 FizzBuzz\u000aCurrent Number: 16 \u000aCurrent Number: 17 \u000aCurrent Number: 18 Fizz\u000aCurrent Number: 19 \u000aCurrent Number: 20 Buzz\u000aCurrent Number: 21 Fizz\u000aCurrent Number: 22 \u000aCurrent Number: 23 \u000aCurrent Number: 24 Fizz\u000aCurrent Number: 25 Buzz\u000aCurrent Number: 26 \u000aCurrent Number: 27 Fizz\u000aCurrent Number: 28 \u000aCurrent Number: 29 \u000aCurrent Number: 30 FizzBuzz\u000a",
+        "error": null,
+        "stoppedByCaptureAfterLines": null
+      }
+    },
+    {
+      "group": "default",
+      "name": "Execute(-5, 5)",
+      "result": {
+        "output": "Current Number: -5 Buzz\u000aCurrent Number: -4 \u000aCurrent Number: -3 Fizz\u000aCurrent Number: -2 \u000aCurrent Number: -1 \u000aCurrent Number: 0 FizzBuzz\u000aCurrent Number: 1 \u000aCurrent Number: 2 \u000aCurrent Number: 3 Fizz\u000aCurrent Number: 4 \u000aCurrent Number: 5 Buzz\u000a",
+        "error": null,
+        "stoppedByCaptureAfterLines": null
+      }
+    },
+    {
+      "group": "default",
+      "name": "Execute(5, 5)",
+      "result": {
+        "output": "Current Number: 5 Buzz\u000a",
+        "error": null,
+        "stoppedByCaptureAfterLines": null
+      }
+    },
+    {
+      "group": "default",
+      "name": "Execute(0, 0)",
+      "result": {
+        "output": "Current Number: 0 FizzBuzz\u000a",
+        "error": null,
+        "stoppedByCaptureAfterLines": null
+      }
+    },
+    {
+      "group": "default",
+      "name": "Execute(10, 1)",
+      "result": {
+        "output": "",
+        "error": null,
+        "stoppedByCaptureAfterLines": null
+      }
+    },
+    {
+      "group": "default",
+      "name": "Execute(0, -1)",
+      "result": {
+        "output": "",
+        "error": null,
+        "stoppedByCaptureAfterLines": null
+      }
+    },
+    {
+      "group": "default",
+      "name": "Execute(-9223372036854775808, -9223372036854775806)",
+      "result": {
+        "output": "Current Number: -9223372036854775808 \u000aCurrent Number: -9223372036854775807 \u000aCurrent Number: -9223372036854775806 Fizz\u000a",
+        "error": null,
+        "stoppedByCaptureAfterLines": null
+      }
+    },
+    {
+      "group": "default",
+      "name": "Execute(3) then Execute(5) on one instance",
+      "result": {
+        "output": "Current Number: 3 Fizz\u000aCurrent Number: 5 Buzz\u000a",
+        "error": null,
+        "stoppedByCaptureAfterLines": null
+      }
+    },
+    {
+      "group": "default",
+      "name": "Execute() twice on one instance",
+      "result": {
+        "output": "Current Number: 1 \u000aCurrent Number: 2 \u000aCurrent Number: 3 Fizz\u000aCurrent Number: 4 \u000aCurrent Number: 5 Buzz\u000aCurrent Number: 6 Fizz\u000aCurrent Number: 7 \u000aCurrent Number: 8 \u000aCurrent Number: 9 Fizz\u000aCurrent Number: 10 Buzz\u000aCurrent Number: 11 \u000aCurrent Number: 12 Fizz\u000aCurrent Number: 13 \u000aCurrent Number: 14 \u000aCurrent Number: 15 FizzBuzz\u000aCurrent Number: 16 \u000aCurrent Number: 17 \u000aCurrent Number: 18 Fizz\u000aCurrent Number: 19 \u000aCurrent Number: 20 Buzz\u000aCurrent Number: 21 Fizz\u000aCurrent Number: 22 \u000aCurrent Number: 23 \u000aCurrent Number: 24 Fizz\u000aCurrent Number: 25 Buzz\u000aCurrent Number: 26 \u000aCurrent Number: 27 Fizz\u000aCurrent Number: 28 \u000aCurrent Number: 29 \u000aCurrent Number: 30 FizzBuzz\u000aCurrent Number: 31 \u000aCurrent Number: 32 \u000aCurrent Number: 33 Fizz\u000aCurrent Number: 34 \u000aCurrent Number: 35 Buzz\u000aCurrent Number: 36 Fizz\u000aCurrent Number: 37 \u000aCurrent Number: 38 \u000aCurrent Number: 39 Fizz\u000aCurrent Number: 40 Buzz\u000aCurrent Number: 41 \u000aCurrent Number: 42 Fizz\u000aCurrent Number: 43 \u000aCurrent Number: 44 \u000aCurrent Number: 45 FizzBuzz\u000aCurrent Number: 46 \u000aCurrent Number: 47 \u000aCurrent Number: 48 Fizz\u000aCurrent Number: 49 \u000aCurrent Number: 50 Buzz\u000aCurrent Number: 51 Fizz\u000aCurrent Number: 52 \u000aCurrent Number: 53 \u000aCurrent Number: 54 Fizz\u000aCurrent Number: 55 Buzz\u000aCurrent Number: 56 \u000aCurrent Number: 57 Fizz\u000aCurrent Number: 58 \u000aCurrent Number: 59 \u000aCurrent Number: 60 FizzBuzz\u000aCurrent Number: 61 \u000aCurrent Number: 62 \u000aCurrent Number: 63 Fizz\u000aCurrent Number: 64 \u000aCurrent Number: 65 Buzz\u000aCurrent Number: 66 Fizz\u000aCurrent Number: 67 \u000aCurrent Number: 68 \u000aCurrent Number: 69 Fizz\u000aCurrent Number: 70 Buzz\u000aCurrent Number: 71 \u000aCurrent Number: 72 Fizz\u000aCurrent Number: 73 \u000aCurrent Number: 74 \u000aCurrent Number: 75 FizzBuzz\u000aCurrent Number: 76 \u000aCurrent Number: 77 \u000aCurrent Number: 78 Fizz\u000aCurrent Number: 79 \u000aCurrent Number: 80 Buzz\u000aCurrent Number: 81 Fizz\u000aCurrent Number: 82 \u000aCurrent Number: 83 \u000aCurrent Number: 84 Fizz\u000aCurrent Number: 85 Buzz\u000aCurrent Number: 86 \u000aCurrent Number: 87 Fizz\u000aCurrent Number: 88 \u000aCurrent Number: 89 \u000aCurrent Number: 90 FizzBuzz\u000aCurrent Number: 91 \u000aCurrent Number: 92 \u000aCurrent Number: 93 Fizz\u000aCurrent Number: 94 \u000aCurrent Number: 95 Buzz\u000aCurrent Number: 96 Fizz\u000aCurrent Number: 97 \u000aCurrent Number: 98 \u000aCurrent Number: 99 Fizz\u000aCurrent Number: 100 Buzz\u000aCurrent Number: 1 \u000aCurrent Number: 2 \u000aCurrent Number: 3 Fizz\u000aCurrent Number: 4 \u000aCurrent Number: 5 Buzz\u000aCurrent Number: 6 Fizz\u000aCurrent Number: 7 \u000aCurrent Number: 8 \u000aCurrent Number: 9 Fizz\u000aCurrent Number: 10 Buzz\u000aCurrent Number: 11 \u000aCurrent Number: 12 Fizz\u000aCurrent Number: 13 \u000aCurrent Number: 14 \u000aCurrent Number: 15 FizzBuzz\u000aCurrent Number: 16 \u000aCurrent Number: 17 \u000aCurrent Number: 18 Fizz\u000aCurrent Number: 19 \u000aCurrent Number: 20 Buzz\u000aCurrent Number: 21 Fizz\u000aCurrent Number: 22 \u000aCurrent Number: 23 \u000aCurrent Number: 24 Fizz\u000aCurrent Number: 25 Buzz\u000aCurrent Number: 26 \u000aCurrent Number: 27 Fizz\u000aCurrent Number: 28 \u000aCurrent Number: 29 \u000aCurrent Number: 30 FizzBuzz\u000aCurrent Number: 31 \u000aCurrent Number: 32 \u000aCurrent Number: 33 Fizz\u000aCurrent Number: 34 \u000aCurrent Number: 35 Buzz\u000aCurrent Number: 36 Fizz\u000aCurrent Number: 37 \u000aCurrent Number: 38 \u000aCurrent Number: 39 Fizz\u000aCurrent Number: 40 Buzz\u000aCurrent Number: 41 \u000aCurrent Number: 42 Fizz\u000aCurrent Number: 43 \u000aCurrent Number: 44 \u000aCurrent Number: 45 FizzBuzz\u000aCurrent Number: 46 \u000aCurrent Number: 47 \u000aCurrent Number: 48 Fizz\u000aCurrent Number: 49 \u000aCurrent Number: 50 Buzz\u000aCurrent Number: 51 Fizz\u000aCurrent Number: 52 \u000aCurrent Number: 53 \u000aCurrent Number: 54 Fizz\u000aCurrent Number: 55 Buzz\u000aCurrent Number: 56 \u000aCurrent Number: 57 Fizz\u000aCurrent Number: 58 \u000aCurrent Number: 59 \u000aCurrent Number: 60 FizzBuzz\u000aCurrent Number: 61 \u000aCurrent Number: 62 \u000aCurrent Number: 63 Fizz\u000aCurrent Number: 64 \u000aCurrent Number: 65 Buzz\u000aCurrent Number: 66 Fizz\u000aCurrent Number: 67 \u000aCurrent Number: 68 \u000aCurrent Number: 69 Fizz\u000aCurrent Number: 70 Buzz\u000aCurrent Number: 71 \u000aCurrent Number: 72 Fizz\u000aCurrent Number: 73 \u000aCurrent Number: 74 \u000aCurrent Number: 75 FizzBuzz\u000aCurrent Number: 76 \u000aCurrent Number: 77 \u000aCurrent Number: 78 Fizz\u000aCurrent Number: 79 \u000aCurrent Number: 80 Buzz\u000aCurrent Number: 81 Fizz\u000aCurrent Number: 82 \u000aCurrent Number: 83 \u000aCurrent Number: 84 Fizz\u000aCurrent Number: 85 Buzz\u000aCurrent Number: 86 \u000aCurrent Number: 87 Fizz\u000aCurrent Number: 88 \u000aCurrent Number: 89 \u000aCurrent Number: 90 FizzBuzz\u000aCurrent Number: 91 \u000aCurrent Number: 92 \u000aCurrent Number: 93 Fizz\u000aCurrent Number: 94 \u000aCurrent Number: 95 Buzz\u000aCurrent Number: 96 Fizz\u000aCurrent Number: 97 \u000aCurrent Number: 98 \u000aCurrent Number: 99 Fizz\u000aCurrent Number: 100 Buzz\u000a",
+        "error": null,
+        "stoppedByCaptureAfterLines": null
+      }
+    },
+    {
+      "group": "custom",
+      "name": "Execute()",
+      "result": {
+        "output": "Current Number: 1 \u000aCurrent Number: 2 Even\u000aCurrent Number: 3 \u000aCurrent Number: 4 Even\u000aCurrent Number: 5 \u000aCurrent Number: 6 EvenScary\u000aCurrent Number: 7 Lucky\u000aCurrent Number: 8 Even\u000aCurrent Number: 9 \u000aCurrent Number: 10 Even\u000aCurrent Number: 11 \u000aCurrent Number: 12 EvenScary\u000aCurrent Number: 13 \u000aCurrent Number: 14 EvenLucky\u000aCurrent Number: 15 \u000aCurrent Number: 16 Even\u000aCurrent Number: 17 \u000aCurrent Number: 18 EvenScary\u000aCurrent Number: 19 \u000aCurrent Number: 20 Even\u000aCurrent Number: 21 Lucky\u000aCurrent Number: 22 Even\u000aCurrent Number: 23 \u000aCurrent Number: 24 EvenScary\u000aCurrent Number: 25 \u000aCurrent Number: 26 Even\u000aCurrent Number: 27 \u000aCurrent Number: 28 EvenLucky\u000aCurrent Number: 29 \u000aCurrent Number: 30 EvenScary\u000aCurrent Number: 31 \u000aCurrent Number: 32 Even\u000aCurrent Number: 33 \u000aCurrent Number: 34 Even\u000aCurrent Number: 35 Lucky\u000aCurrent Number: 36 EvenScary\u000aCurrent Number: 37 \u000aCurrent Number: 38 Even\u000aCurrent Number: 39 \u000aCurrent Number: 40 Even\u000aCurrent Number: 41 \u000aCurrent Number: 42 EvenScaryLucky\u000aCurrent Number: 43 \u000aCurrent Number: 44 Even\u000aCurrent Number: 45 \u000aCurrent Number: 46 Even\u000aCurrent Number: 47 \u000aCurrent Number: 48 EvenScary\u000aCurrent Number: 49 Lucky\u000aCurrent Number: 50 Even\u000aCurrent Number: 51 \u000aCurrent Number: 52 Even\u000aCurrent Number: 53 \u000aCurrent Number: 54 EvenScary\u000aCurrent Number: 55 \u000aCurrent Number: 56 EvenLucky\u000aCurrent Number: 57 \u000aCurrent Number: 58 Even\u000aCurrent Number: 59 \u000aCurrent Number: 60 EvenScary\u000aCurrent Number: 61 \u000aCurrent Number: 62 Even\u000aCurrent Number: 63 Lucky\u000aCurrent Number: 64 Even\u000aCurrent Number: 65 \u000aCurrent Number: 66 EvenScary\u000aCurrent Number: 67 \u000aCurrent Number: 68 Even\u000aCurrent Number: 69 \u000aCurrent Number: 70 EvenLucky\u000aCurrent Number: 71 \u000aCurrent Number: 72 EvenScary\u000aCurrent Number: 73 \u000aCurrent Number: 74 Even\u000aCurrent Number: 75 \u000aCurrent Number: 76 Even\u000aCurrent Number: 77 Lucky\u000aCurrent Number: 78 EvenScary\u000aCurrent Number: 79 \u000aCurrent Number: 80 Even\u000aCurrent Number: 81 \u000aCurrent Number: 82 Even\u000aCurrent Number: 83 \u000aCurrent Number: 84 EvenScaryLucky\u000aCurrent Number: 85 \u000aCurrent Number: 86 Even\u000aCurrent Number: 87 \u000aCurrent Number: 88 Even\u000aCurrent Number: 89 \u000aCurrent Number: 90 EvenScary\u000aCurrent Number: 91 Lucky\u000aCurrent Number: 92 Even\u000aCurrent Number: 93 \u000aCurrent Number: 94 Even\u000aCurrent Number: 95 \u000aCurrent Number: 96 EvenScary\u000aCurrent Number: 97 \u000aCurrent Number: 98 EvenLucky\u000aCurrent Number: 99 \u000aCurrent Number: 100 Even\u000a",
+        "error": null,
+        "stoppedByCaptureAfterLines": null
+      }
+    },
+    {
+      "group": "custom",
+      "name": "Execute(1)",
+      "result": {
+        "output": "Current Number: 1 \u000a",
+        "error": null,
+        "stoppedByCaptureAfterLines": null
+      }
+    },
+    {
+      "group": "custom",
+      "name": "Execute(2)",
+      "result": {
+        "output": "Current Number: 2 Even\u000a",
+        "error": null,
+        "stoppedByCaptureAfterLines": null
+      }
+    },
+    {
+      "group": "custom",
+      "name": "Execute(3)",
+      "result": {
+        "output": "Current Number: 3 \u000a",
+        "error": null,
+        "stoppedByCaptureAfterLines": null
+      }
+    },
+    {
+      "group": "custom",
+      "name": "Execute(6)",
+      "result": {
+        "output": "Current Number: 6 EvenScary\u000a",
+        "error": null,
+        "stoppedByCaptureAfterLines": null
+      }
+    },
+    {
+      "group": "custom",
+      "name": "Execute(7)",
+      "result": {
+        "output": "Current Number: 7 Lucky\u000a",
+        "error": null,
+        "stoppedByCaptureAfterLines": null
+      }
+    },
+    {
+      "group": "custom",
+      "name": "Execute(12)",
+      "result": {
+        "output": "Current Number: 12 EvenScary\u000a",
+        "error": null,
+        "stoppedByCaptureAfterLines": null
+      }
+    },
+    {
+      "group": "custom",
+      "name": "Execute(14)",
+      "result": {
+        "output": "Current Number: 14 EvenLucky\u000a",
+        "error": null,
+        "stoppedByCaptureAfterLines": null
+      }
+    },
+    {
+      "group": "custom",
+      "name": "Execute(21)",
+      "result": {
+        "output": "Current Number: 21 Lucky\u000a",
+        "error": null,
+        "stoppedByCaptureAfterLines": null
+      }
+    },
+    {
+      "group": "custom",
+      "name": "Execute(42)",
+      "result": {
+        "output": "Current Number: 42 EvenScaryLucky\u000a",
+        "error": null,
+        "stoppedByCaptureAfterLines": null
+      }
+    },
+    {
+      "group": "custom",
+      "name": "Execute(84)",
+      "result": {
+        "output": "Current Number: 84 EvenScaryLucky\u000a",
+        "error": null,
+        "stoppedByCaptureAfterLines": null
+      }
+    },
+    {
+      "group": "custom",
+      "name": "Execute(0)",
+      "result": {
+        "output": "Current Number: 0 EvenScaryLucky\u000a",
+        "error": null,
+        "stoppedByCaptureAfterLines": null
+      }
+    },
+    {
+      "group": "custom",
+      "name": "Execute(-42)",
+      "result": {
+        "output": "Current Number: -42 EvenScaryLucky\u000a",
+        "error": null,
+        "stoppedByCaptureAfterLines": null
+      }
+    },
+    {
+      "group": "custom",
+      "name": "Execute(40, 45)",
+      "result": {
+        "output": "Current Number: 40 Even\u000aCurrent Number: 41 \u000aCurrent Number: 42 EvenScaryLucky\u000aCurrent Number: 43 \u000aCurrent Number: 44 Even\u000aCurrent Number: 45 \u000a",
+        "error": null,
+        "stoppedByCaptureAfterLines": null
+      }
+    },
+    {
+      "group": "custom",
+      "name": "the default rules passed explicitly: Execute(1, 15)",
+      "result": {
+        "output": "Current Number: 1 \u000aCurrent Number: 2 \u000aCurrent Number: 3 Fizz\u000aCurrent Number: 4 \u000aCurrent Number: 5 Buzz\u000aCurrent Number: 6 Fizz\u000aCurrent Number: 7 \u000aCurrent Number: 8 \u000aCurrent Number: 9 Fizz\u000aCurrent Number: 10 Buzz\u000aCurrent Number: 11 \u000aCurrent Number: 12 Fizz\u000aCurrent Number: 13 \u000aCurrent Number: 14 \u000aCurrent Number: 15 FizzBuzz\u000a",
+        "error": null,
+        "stoppedByCaptureAfterLines": null
+      }
+    },
+    {
+      "group": "edge",
+      "name": "Execute(long.MaxValue) (stopped by the capture)",
+      "result": {
+        "output": "Current Number: 9223372036854775807 \u000aCurrent Number: -9223372036854775808 \u000aCurrent Number: -9223372036854775807 \u000a",
+        "error": null,
+        "stoppedByCaptureAfterLines": 3
+      }
+    },
+    {
+      "group": "edge",
+      "name": "Execute(long.MaxValue - 2, long.MaxValue) (stopped by the capture)",
+      "result": {
+        "output": "Current Number: 9223372036854775805 Buzz\u000aCurrent Number: 9223372036854775806 Fizz\u000aCurrent Number: 9223372036854775807 \u000aCurrent Number: -9223372036854775808 \u000aCurrent Number: -9223372036854775807 \u000aCurrent Number: -9223372036854775806 Fizz\u000a",
+        "error": null,
+        "stoppedByCaptureAfterLines": 6
+      }
+    },
+    {
+      "group": "edge",
+      "name": "Execute(long.MinValue, long.MaxValue) (stopped by the capture)",
+      "result": {
+        "output": "Current Number: -9223372036854775808 \u000aCurrent Number: -9223372036854775807 \u000aCurrent Number: -9223372036854775806 Fizz\u000a",
+        "error": null,
+        "stoppedByCaptureAfterLines": 3
+      }
+    },
+    {
+      "group": "edge",
+      "name": "Execute(long.MaxValue - 1, long.MaxValue - 1)",
+      "result": {
+        "output": "Current Number: 9223372036854775806 Fizz\u000a",
+        "error": null,
+        "stoppedByCaptureAfterLines": null
+      }
+    },
+    {
+      "group": "edge",
+      "name": "Execute(long.MaxValue, long.MinValue)",
+      "result": {
+        "output": "",
+        "error": null,
+        "stoppedByCaptureAfterLines": null
+      }
+    },
+    {
+      "group": "edge",
+      "name": "Execute(long.MinValue, long.MinValue)",
+      "result": {
+        "output": "Current Number: -9223372036854775808 \u000a",
+        "error": null,
+        "stoppedByCaptureAfterLines": null
+      }
+    },
+    {
+      "group": "rules",
+      "name": "empty rules: Execute(1, 5)",
+      "result": {
+        "output": "Current Number: 1 \u000aCurrent Number: 2 \u000aCurrent Number: 3 \u000aCurrent Number: 4 \u000aCurrent Number: 5 \u000a",
+        "error": null,
+        "stoppedByCaptureAfterLines": null
+      }
+    },
+    {
+      "group": "rules",
+      "name": "divisor 1: Execute(1, 3)",
+      "result": {
+        "output": "Current Number: 1 One\u000aCurrent Number: 2 One\u000aCurrent Number: 3 One\u000a",
+        "error": null,
+        "stoppedByCaptureAfterLines": null
+      }
+    },
+    {
+      "group": "rules",
+      "name": "divisor 0: Execute(1, 2)",
+      "result": {
+        "output": "Current Number: 1 ",
+        "error": {
+          "phase": "execute",
+          "type": "System.DivideByZeroException",
+          "message": "Attempted to divide by zero.",
+          "param": null,
+          "from": "library"
+        },
+        "stoppedByCaptureAfterLines": null
+      }
+    },
+    {
+      "group": "rules",
+      "name": "divisor 0 and 3 (0 sorts first): Execute(3)",
+      "result": {
+        "output": "Current Number: 3 ",
+        "error": {
+          "phase": "execute",
+          "type": "System.DivideByZeroException",
+          "message": "Attempted to divide by zero.",
+          "param": null,
+          "from": "library"
+        },
+        "stoppedByCaptureAfterLines": null
+      }
+    },
+    {
+      "group": "rules",
+      "name": "divisor 0 with an empty range: Execute(2, 1)",
+      "result": {
+        "output": "",
+        "error": null,
+        "stoppedByCaptureAfterLines": null
+      }
+    },
+    {
+      "group": "rules",
+      "name": "negative divisor -3 and 3: Execute(-3, 3)",
+      "result": {
+        "output": "Current Number: -3 NegFizzFizz\u000aCurrent Number: -2 \u000aCurrent Number: -1 \u000aCurrent Number: 0 NegFizzFizz\u000aCurrent Number: 1 \u000aCurrent Number: 2 \u000aCurrent Number: 3 NegFizzFizz\u000a",
+        "error": null,
+        "stoppedByCaptureAfterLines": null
+      }
+    },
+    {
+      "group": "rules",
+      "name": "divisor -1: Execute(long.MinValue)",
+      "result": {
+        "output": "Current Number: -9223372036854775808 ",
+        "error": {
+          "phase": "execute",
+          "type": "System.OverflowException",
+          "message": "Arithmetic operation resulted in an overflow.",
+          "param": null,
+          "from": "library"
+        },
+        "stoppedByCaptureAfterLines": null
+      }
+    },
+    {
+      "group": "rules",
+      "name": "divisor -1: Execute(long.MinValue + 1)",
+      "result": {
+        "output": "Current Number: -9223372036854775807 MinusOne\u000a",
+        "error": null,
+        "stoppedByCaptureAfterLines": null
+      }
+    },
+    {
+      "group": "rules",
+      "name": "divisor 2 and -1: Execute(long.MinValue)",
+      "result": {
+        "output": "Current Number: -9223372036854775808 ",
+        "error": {
+          "phase": "execute",
+          "type": "System.OverflowException",
+          "message": "Arithmetic operation resulted in an overflow.",
+          "param": null,
+          "from": "library"
+        },
+        "stoppedByCaptureAfterLines": null
+      }
+    },
+    {
+      "group": "rules",
+      "name": "divisor long.MinValue: Execute(long.MinValue), Execute(0), Execute(long.MaxValue - 1)",
+      "result": {
+        "output": "Current Number: -9223372036854775808 Min\u000aCurrent Number: 0 Min\u000aCurrent Number: 9223372036854775806 \u000a",
+        "error": null,
+        "stoppedByCaptureAfterLines": null
+      }
+    },
+    {
+      "group": "rules",
+      "name": "divisor long.MaxValue: Execute(-long.MaxValue), Execute(long.MaxValue - 1)",
+      "result": {
+        "output": "Current Number: -9223372036854775807 Max\u000aCurrent Number: 9223372036854775806 \u000a",
+        "error": null,
+        "stoppedByCaptureAfterLines": null
+      }
+    },
+    {
+      "group": "rules",
+      "name": "insertion order 5 then 3: Execute(15)",
+      "result": {
+        "output": "Current Number: 15 FizzBuzz\u000a",
+        "error": null,
+        "stoppedByCaptureAfterLines": null
+      }
+    },
+    {
+      "group": "rules",
+      "name": "a null word: Execute(3)",
+      "result": {
+        "output": "Current Number: 3 \u000a",
+        "error": null,
+        "stoppedByCaptureAfterLines": null
+      }
+    },
+    {
+      "group": "rules",
+      "name": "an empty word: Execute(3)",
+      "result": {
+        "output": "Current Number: 3 \u000a",
+        "error": null,
+        "stoppedByCaptureAfterLines": null
+      }
+    },
+    {
+      "group": "rules",
+      "name": "the same word twice: Execute(4)",
+      "result": {
+        "output": "Current Number: 4 XX\u000a",
+        "error": null,
+        "stoppedByCaptureAfterLines": null
+      }
+    },
+    {
+      "group": "rules",
+      "name": "a word with LF and one with CR LF: Execute(6)",
+      "result": {
+        "output": "Current Number: 6 A\u000aBC\u000d\u000aD\u000a",
+        "error": null,
+        "stoppedByCaptureAfterLines": null
+      }
+    },
+    {
+      "group": "rules",
+      "name": "a word with a surrogate pair and one with a lone surrogate: Execute(6)",
+      "result": {
+        "output": "Current Number: 6 Fizz\ud83d\ude00\ud800\u000a",
+        "error": null,
+        "stoppedByCaptureAfterLines": null
+      }
+    },
+    {
+      "group": "rules",
+      "name": "divisors 1 to 12: Execute(60)",
+      "result": {
+        "output": "Current Number: 60 d1d2d3d4d5d6d10d12\u000a",
+        "error": null,
+        "stoppedByCaptureAfterLines": null
+      }
+    },
+    {
+      "group": "rules",
+      "name": "SortedDictionary with a descending comparer: Execute(15)",
+      "result": {
+        "output": "Current Number: 15 FizzBuzz\u000a",
+        "error": null,
+        "stoppedByCaptureAfterLines": null
+      }
+    },
+    {
+      "group": "rules",
+      "name": "ReadOnlyDictionary: Execute(15)",
+      "result": {
+        "output": "Current Number: 15 FizzBuzz\u000a",
+        "error": null,
+        "stoppedByCaptureAfterLines": null
+      }
+    },
+    {
+      "group": "null",
+      "name": "rules null: Execute(1)",
+      "result": {
+        "output": "Current Number: 1 ",
+        "error": {
+          "phase": "execute",
+          "type": "System.ArgumentNullException",
+          "message": "Value cannot be null.\u000d\u000aParameter name: source",
+          "param": "source",
+          "from": "System.Core"
+        },
+        "stoppedByCaptureAfterLines": null
+      }
+    },
+    {
+      "group": "null",
+      "name": "rules null: Execute(2, 1) (empty range)",
+      "result": {
+        "output": "",
+        "error": null,
+        "stoppedByCaptureAfterLines": null
+      }
+    },
+    {
+      "group": "null",
+      "name": "rules null: Execute()",
+      "result": {
+        "output": "Current Number: 1 ",
+        "error": {
+          "phase": "execute",
+          "type": "System.ArgumentNullException",
+          "message": "Value cannot be null.\u000d\u000aParameter name: source",
+          "param": "source",
+          "from": "System.Core"
+        },
+        "stoppedByCaptureAfterLines": null
+      }
+    },
+    {
+      "group": "null",
+      "name": "writer null, default rules: construct only",
+      "result": {
+        "output": "",
+        "error": null,
+        "stoppedByCaptureAfterLines": null
+      }
+    },
+    {
+      "group": "null",
+      "name": "writer null, default rules: Execute(1)",
+      "result": {
+        "output": "",
+        "error": {
+          "phase": "execute",
+          "type": "System.NullReferenceException",
+          "message": "Object reference not set to an instance of an object.",
+          "param": null,
+          "from": "library"
+        },
+        "stoppedByCaptureAfterLines": null
+      }
+    },
+    {
+      "group": "null",
+      "name": "writer null, default rules: Execute(2, 1) (empty range)",
+      "result": {
+        "output": "",
+        "error": null,
+        "stoppedByCaptureAfterLines": null
+      }
+    },
+    {
+      "group": "null",
+      "name": "writer null, custom rules: Execute(1)",
+      "result": {
+        "output": "",
+        "error": {
+          "phase": "execute",
+          "type": "System.NullReferenceException",
+          "message": "Object reference not set to an instance of an object.",
+          "param": null,
+          "from": "library"
+        },
+        "stoppedByCaptureAfterLines": null
+      }
+    },
+    {
+      "group": "null",
+      "name": "rules and writer null: construct only",
+      "result": {
+        "output": "",
+        "error": null,
+        "stoppedByCaptureAfterLines": null
+      }
+    },
+    {
+      "group": "null",
+      "name": "rules and writer null: Execute(1)",
+      "result": {
+        "output": "",
+        "error": {
+          "phase": "execute",
+          "type": "System.NullReferenceException",
+          "message": "Object reference not set to an instance of an object.",
+          "param": null,
+          "from": "library"
+        },
+        "stoppedByCaptureAfterLines": null
+      }
+    },
+    {
+      "group": "aliasing",
+      "name": "rule added after construction: Execute(15)",
+      "result": {
+        "output": "Current Number: 15 FizzBuzz\u000a",
+        "error": null,
+        "stoppedByCaptureAfterLines": null
+      }
+    },
+    {
+      "group": "aliasing",
+      "name": "rule removed between two calls: Execute(3), Execute(3)",
+      "result": {
+        "output": "Current Number: 3 Fizz\u000aCurrent Number: 3 \u000a",
+        "error": null,
+        "stoppedByCaptureAfterLines": null
+      }
+    },
+    {
+      "group": "aliasing",
+      "name": "rules cleared after construction: Execute(15)",
+      "result": {
+        "output": "Current Number: 15 \u000a",
+        "error": null,
+        "stoppedByCaptureAfterLines": null
+      }
+    },
+    {
+      "group": "aliasing",
+      "name": "rule added by the writer after the first line: Execute(1, 4)",
+      "result": {
+        "output": "Current Number: 1 \u000aCurrent Number: 2 Even\u000aCurrent Number: 3 \u000aCurrent Number: 4 Even\u000a",
+        "error": null,
+        "stoppedByCaptureAfterLines": null
+      }
+    },
+    {
+      "group": "aliasing",
+      "name": "rule added by the writer while words are written: Execute(12), Execute(4)",
+      "result": {
+        "output": "Current Number: 12 FizzSix\u000aCurrent Number: 4 Four\u000a",
+        "error": null,
+        "stoppedByCaptureAfterLines": null
+      }
+    },
+    {
+      "group": "writer",
+      "name": "calls, default rules: Execute(15)",
+      "result": {
+        "output": "Current Number: 15 FizzBuzz\u000a",
+        "calls": [
+          "Write(string) \"Current Number: 15 \"",
+          "Write(string) \"Fizz\"",
+          "Write(string) \"Buzz\"",
+          "Write(string) \"\u000a\""
+        ],
+        "flushes": 0,
+        "error": null,
+        "stoppedByCaptureAfterLines": null
+      }
+    },
+    {
+      "group": "writer",
+      "name": "calls, default rules: Execute(1, 3)",
+      "result": {
+        "output": "Current Number: 1 \u000aCurrent Number: 2 \u000aCurrent Number: 3 Fizz\u000a",
+        "calls": [
+          "Write(string) \"Current Number: 1 \"",
+          "Write(string) \"\u000a\"",
+          "Write(string) \"Current Number: 2 \"",
+          "Write(string) \"\u000a\"",
+          "Write(string) \"Current Number: 3 \"",
+          "Write(string) \"Fizz\"",
+          "Write(string) \"\u000a\""
+        ],
+        "flushes": 0,
+        "error": null,
+        "stoppedByCaptureAfterLines": null
+      }
+    },
+    {
+      "group": "writer",
+      "name": "calls, empty rules: Execute(1, 2)",
+      "result": {
+        "output": "Current Number: 1 \u000aCurrent Number: 2 \u000a",
+        "calls": [
+          "Write(string) \"Current Number: 1 \"",
+          "Write(string) \"\u000a\"",
+          "Write(string) \"Current Number: 2 \"",
+          "Write(string) \"\u000a\""
+        ],
+        "flushes": 0,
+        "error": null,
+        "stoppedByCaptureAfterLines": null
+      }
+    },
+    {
+      "group": "writer",
+      "name": "calls, a null word: Execute(3)",
+      "result": {
+        "output": "Current Number: 3 \u000a",
+        "calls": [
+          "Write(string) \"Current Number: 3 \"",
+          "Write(string) null",
+          "Write(string) \"\u000a\""
+        ],
+        "flushes": 0,
+        "error": null,
+        "stoppedByCaptureAfterLines": null
+      }
+    },
+    {
+      "group": "writer",
+      "name": "calls, empty range: Execute(2, 1)",
+      "result": {
+        "output": "",
+        "calls": [],
+        "flushes": 0,
+        "error": null,
+        "stoppedByCaptureAfterLines": null
+      }
+    },
+    {
+      "group": "writer",
+      "name": "writer NewLine set to CR LF: Execute(3)",
+      "result": {
+        "output": "Current Number: 3 Fizz\u000a",
+        "error": null,
+        "stoppedByCaptureAfterLines": null
+      }
+    },
+    {
+      "group": "writer",
+      "name": "writer fails on its first write: Execute(3)",
+      "result": {
+        "output": "",
+        "error": {
+          "phase": "execute",
+          "type": "System.IO.IOException",
+          "message": "the capture's writer failed on purpose",
+          "param": null,
+          "from": "caller"
+        },
+        "stoppedByCaptureAfterLines": null
+      }
+    },
+    {
+      "group": "writer",
+      "name": "writer fails on its third write: Execute(15, 16)",
+      "result": {
+        "output": "Current Number: 15 Fizz",
+        "error": {
+          "phase": "execute",
+          "type": "System.IO.IOException",
+          "message": "the capture's writer failed on purpose",
+          "param": null,
+          "from": "caller"
+        },
+        "stoppedByCaptureAfterLines": null
+      }
+    },
+    {
+      "group": "writer",
+      "name": "a disposed StringWriter: Execute(1)",
+      "result": {
+        "error": {
+          "phase": "execute",
+          "type": "System.ObjectDisposedException",
+          "message": "Cannot write to a closed TextWriter.",
+          "param": null,
+          "from": "mscorlib"
+        }
+      }
+    },
+    {
+      "group": "writer",
+      "name": "a real StringWriter: Execute(14, 16)",
+      "result": "Current Number: 14 \u000aCurrent Number: 15 FizzBuzz\u000aCurrent Number: 16 \u000a"
+    },
+    {
+      "group": "culture",
+      "name": "invariant",
+      "result": {
+        "negativeSign": "-",
+        "default Execute(-15)": {
+          "output": "Current Number: -15 FizzBuzz\u000a",
+          "error": null,
+          "stoppedByCaptureAfterLines": null
+        },
+        "default Execute(-2, 2)": {
+          "output": "Current Number: -2 \u000aCurrent Number: -1 \u000aCurrent Number: 0 FizzBuzz\u000aCurrent Number: 1 \u000aCurrent Number: 2 \u000a",
+          "error": null,
+          "stoppedByCaptureAfterLines": null
+        },
+        "default Execute(1234567)": {
+          "output": "Current Number: 1234567 \u000a",
+          "error": null,
+          "stoppedByCaptureAfterLines": null
+        },
+        "default Execute(long.MinValue)": {
+          "output": "Current Number: -9223372036854775808 \u000a",
+          "error": null,
+          "stoppedByCaptureAfterLines": null
+        }
+      }
+    },
+    {
+      "group": "culture",
+      "name": "en-US",
+      "result": {
+        "negativeSign": "-",
+        "default Execute(-15)": {
+          "output": "Current Number: -15 FizzBuzz\u000a",
+          "error": null,
+          "stoppedByCaptureAfterLines": null
+        },
+        "default Execute(-2, 2)": {
+          "output": "Current Number: -2 \u000aCurrent Number: -1 \u000aCurrent Number: 0 FizzBuzz\u000aCurrent Number: 1 \u000aCurrent Number: 2 \u000a",
+          "error": null,
+          "stoppedByCaptureAfterLines": null
+        },
+        "default Execute(1234567)": {
+          "output": "Current Number: 1234567 \u000a",
+          "error": null,
+          "stoppedByCaptureAfterLines": null
+        },
+        "default Execute(long.MinValue)": {
+          "output": "Current Number: -9223372036854775808 \u000a",
+          "error": null,
+          "stoppedByCaptureAfterLines": null
+        }
+      }
+    },
+    {
+      "group": "culture",
+      "name": "sv-SE",
+      "result": {
+        "negativeSign": "-",
+        "default Execute(-15)": {
+          "output": "Current Number: -15 FizzBuzz\u000a",
+          "error": null,
+          "stoppedByCaptureAfterLines": null
+        },
+        "default Execute(-2, 2)": {
+          "output": "Current Number: -2 \u000aCurrent Number: -1 \u000aCurrent Number: 0 FizzBuzz\u000aCurrent Number: 1 \u000aCurrent Number: 2 \u000a",
+          "error": null,
+          "stoppedByCaptureAfterLines": null
+        },
+        "default Execute(1234567)": {
+          "output": "Current Number: 1234567 \u000a",
+          "error": null,
+          "stoppedByCaptureAfterLines": null
+        },
+        "default Execute(long.MinValue)": {
+          "output": "Current Number: -9223372036854775808 \u000a",
+          "error": null,
+          "stoppedByCaptureAfterLines": null
+        }
+      }
+    },
+    {
+      "group": "culture",
+      "name": "nb-NO",
+      "result": {
+        "negativeSign": "-",
+        "default Execute(-15)": {
+          "output": "Current Number: -15 FizzBuzz\u000a",
+          "error": null,
+          "stoppedByCaptureAfterLines": null
+        },
+        "default Execute(-2, 2)": {
+          "output": "Current Number: -2 \u000aCurrent Number: -1 \u000aCurrent Number: 0 FizzBuzz\u000aCurrent Number: 1 \u000aCurrent Number: 2 \u000a",
+          "error": null,
+          "stoppedByCaptureAfterLines": null
+        },
+        "default Execute(1234567)": {
+          "output": "Current Number: 1234567 \u000a",
+          "error": null,
+          "stoppedByCaptureAfterLines": null
+        },
+        "default Execute(long.MinValue)": {
+          "output": "Current Number: -9223372036854775808 \u000a",
+          "error": null,
+          "stoppedByCaptureAfterLines": null
+        }
+      }
+    },
+    {
+      "group": "culture",
+      "name": "he-IL",
+      "result": {
+        "negativeSign": "-",
+        "default Execute(-15)": {
+          "output": "Current Number: -15 FizzBuzz\u000a",
+          "error": null,
+          "stoppedByCaptureAfterLines": null
+        },
+        "default Execute(-2, 2)": {
+          "output": "Current Number: -2 \u000aCurrent Number: -1 \u000aCurrent Number: 0 FizzBuzz\u000aCurrent Number: 1 \u000aCurrent Number: 2 \u000a",
+          "error": null,
+          "stoppedByCaptureAfterLines": null
+        },
+        "default Execute(1234567)": {
+          "output": "Current Number: 1234567 \u000a",
+          "error": null,
+          "stoppedByCaptureAfterLines": null
+        },
+        "default Execute(long.MinValue)": {
+          "output": "Current Number: -9223372036854775808 \u000a",
+          "error": null,
+          "stoppedByCaptureAfterLines": null
+        }
+      }
+    },
+    {
+      "group": "culture",
+      "name": "fa-IR",
+      "result": {
+        "negativeSign": "-",
+        "default Execute(-15)": {
+          "output": "Current Number: -15 FizzBuzz\u000a",
+          "error": null,
+          "stoppedByCaptureAfterLines": null
+        },
+        "default Execute(-2, 2)": {
+          "output": "Current Number: -2 \u000aCurrent Number: -1 \u000aCurrent Number: 0 FizzBuzz\u000aCurrent Number: 1 \u000aCurrent Number: 2 \u000a",
+          "error": null,
+          "stoppedByCaptureAfterLines": null
+        },
+        "default Execute(1234567)": {
+          "output": "Current Number: 1234567 \u000a",
+          "error": null,
+          "stoppedByCaptureAfterLines": null
+        },
+        "default Execute(long.MinValue)": {
+          "output": "Current Number: -9223372036854775808 \u000a",
+          "error": null,
+          "stoppedByCaptureAfterLines": null
+        }
+      }
+    },
+    {
+      "group": "culture",
+      "name": "ar-SA",
+      "result": {
+        "negativeSign": "-",
+        "default Execute(-15)": {
+          "output": "Current Number: -15 FizzBuzz\u000a",
+          "error": null,
+          "stoppedByCaptureAfterLines": null
+        },
+        "default Execute(-2, 2)": {
+          "output": "Current Number: -2 \u000aCurrent Number: -1 \u000aCurrent Number: 0 FizzBuzz\u000aCurrent Number: 1 \u000aCurrent Number: 2 \u000a",
+          "error": null,
+          "stoppedByCaptureAfterLines": null
+        },
+        "default Execute(1234567)": {
+          "output": "Current Number: 1234567 \u000a",
+          "error": null,
+          "stoppedByCaptureAfterLines": null
+        },
+        "default Execute(long.MinValue)": {
+          "output": "Current Number: -9223372036854775808 \u000a",
+          "error": null,
+          "stoppedByCaptureAfterLines": null
+        }
+      }
+    },
+    {
+      "group": "culture",
+      "name": "de-DE",
+      "result": {
+        "negativeSign": "-",
+        "default Execute(-15)": {
+          "output": "Current Number: -15 FizzBuzz\u000a",
+          "error": null,
+          "stoppedByCaptureAfterLines": null
+        },
+        "default Execute(-2, 2)": {
+          "output": "Current Number: -2 \u000aCurrent Number: -1 \u000aCurrent Number: 0 FizzBuzz\u000aCurrent Number: 1 \u000aCurrent Number: 2 \u000a",
+          "error": null,
+          "stoppedByCaptureAfterLines": null
+        },
+        "default Execute(1234567)": {
+          "output": "Current Number: 1234567 \u000a",
+          "error": null,
+          "stoppedByCaptureAfterLines": null
+        },
+        "default Execute(long.MinValue)": {
+          "output": "Current Number: -9223372036854775808 \u000a",
+          "error": null,
+          "stoppedByCaptureAfterLines": null
+        }
+      }
+    },
+    {
+      "group": "large",
+      "name": "default rules: Execute(1, 100000)",
+      "result": {
+        "length": 2502227,
+        "lines": 100000,
+        "sha256": "8b09698e97de56f4246490f26bc9ed7bf262f83b5975d57a4b6c5e8ef30cadca",
+        "last": "Current Number: 100000 Buzz\u000a"
+      }
+    },
+    {
+      "group": "large",
+      "name": "custom rules: Execute(1, 100000)",
+      "result": {
+        "length": 2643650,
+        "lines": 100000,
+        "sha256": "b2dfd4d2a07ab8725759648ae2afea71ee37d0999c2ce5810d82982941ff54ae",
+        "last": "Current Number: 100000 Even\u000a"
+      }
+    },
+    {
+      "group": "app",
+      "name": "no arguments, standard input redirected and empty",
+      "result": {
+        "stdout": "Current Number: 15 FizzBuzz\u000aCurrent Number: 16 \u000aCurrent Number: 17 \u000aCurrent Number: 18 Fizz\u000aCurrent Number: 19 \u000aCurrent Number: 20 Buzz\u000aCurrent Number: 21 Fizz\u000aCurrent Number: 22 \u000aCurrent Number: 23 \u000aCurrent Number: 24 Fizz\u000aCurrent Number: 25 Buzz\u000aCurrent Number: 26 \u000aCurrent Number: 27 Fizz\u000aCurrent Number: 28 \u000aCurrent Number: 29 \u000aCurrent Number: 30 FizzBuzz\u000a",
+        "exitCode": -532462766,
+        "stderrFirstLine": "Unhandled Exception: System.InvalidOperationException: Cannot read keys when either application does not have a console or when console input has been redirected from a file. Try Console.Read."
+      }
+    },
+    {
+      "group": "app",
+      "name": "arguments 1 5, standard input redirected and empty",
+      "result": {
+        "stdout": "Current Number: 15 FizzBuzz\u000aCurrent Number: 16 \u000aCurrent Number: 17 \u000aCurrent Number: 18 Fizz\u000aCurrent Number: 19 \u000aCurrent Number: 20 Buzz\u000aCurrent Number: 21 Fizz\u000aCurrent Number: 22 \u000aCurrent Number: 23 \u000aCurrent Number: 24 Fizz\u000aCurrent Number: 25 Buzz\u000aCurrent Number: 26 \u000aCurrent Number: 27 Fizz\u000aCurrent Number: 28 \u000aCurrent Number: 29 \u000aCurrent Number: 30 FizzBuzz\u000a",
+        "exitCode": -532462766,
+        "stderrFirstLine": "Unhandled Exception: System.InvalidOperationException: Cannot read keys when either application does not have a console or when console input has been redirected from a file. Try Console.Read."
+      }
+    }
+  ]
+}

@@ -1,0 +1,97 @@
+# Every push to master and every pull request: the golden files untouched since Phase 0, locked restore, dotnet format,
+# build with warnings as errors, the NuGet audit, every test (the golden replay against this OS's recording, the 2014
+# tests, unit, app and differential tests) on Linux, Windows and macOS, a self-contained publish of the program for the
+# runner's own platform with a smoke run, and the final `ci` job the ruleset on master requires. Releases are release.yml.
+# From the package-modernize NuGet template (CachingServiceWithAOPSupport 2.0.0), adapted for a repository that publishes
+# no package: no pack, no package consumers, macOS added. Actions are pinned to commit SHAs; Dependabot updates them.
+name: ci
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  # Only pull request runs are cancelled: every master commit keeps its ci result, which release.yml checks.
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  build:
+    name: build and test (${{ matrix.os }})
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-24.04
+            rid: linux-x64
+          - os: windows-latest
+            rid: win-x64
+          - os: macos-latest
+            rid: osx-arm64
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-dotnet@a98b56852c35b8e3190ac28c8c2271da59106c68 # v6.0.0
+        with:
+          global-json-file: global.json
+          cache: true
+          cache-dependency-path: '**/packages.lock.json'
+      # The Phase 0 commit that added the golden files (skill L-120).
+      - name: The golden recordings and the frozen 2014 source are unchanged since the Phase 0 commit
+        run: git diff --exit-code 2835ec0 -- tests/Golden
+      - run: dotnet restore --locked-mode
+      - run: dotnet format --no-restore --verify-no-changes
+      - run: dotnet build --no-restore -c Release
+      # A dedicated restore that fails on any audit finding, so a future advisory blocks a merge but not a local build.
+      - name: NuGet audit as errors
+        run: dotnet restore -p:AuditPipeline=true --force
+      - name: Test
+        run: dotnet test --no-build -c Release --report-trx --results-directory TestResults
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        if: always()
+        with:
+          name: test-results-${{ matrix.os }}
+          path: TestResults
+          retention-days: 14
+      - name: Publish the program for ${{ matrix.rid }} (self-contained, single file, trimmed) and run it
+        env:
+          RID: ${{ matrix.rid }}
+        run: |
+          dotnet publish src/FizzBuzzWithOutput -c Release -r "$RID" -p:RestoreLockedMode=true -o publish
+          exe=publish/fizzbuzzplus
+          if [ -f publish/fizzbuzzplus.exe ]; then exe=publish/fizzbuzzplus.exe; fi
+          "$exe" 13 15 > smoke.txt
+          printf 'Current Number: 13 \nCurrent Number: 14 \nCurrent Number: 15 FizzBuzz\n' > expected.txt
+          cmp smoke.txt expected.txt
+          "$exe" --help > /dev/null
+
+  ci:
+    name: ci
+    if: ${{ always() }}
+    needs: [build]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - name: Every job passed
+        env:
+          RESULTS: ${{ join(needs.*.result, ' ') }}
+        run: |
+          echo "job results: $RESULTS"
+          for result in $RESULTS; do
+            if [ "$result" != success ]; then
+              exit 1
+            fi
+          done

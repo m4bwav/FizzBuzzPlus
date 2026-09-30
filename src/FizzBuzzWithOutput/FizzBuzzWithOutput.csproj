@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <AssemblyName>fizzbuzzplus</AssemblyName>
+    <RootNamespace>FizzBuzzWithOutput</RootNamespace>
+    <Description>The FizzBuzzPlus command-line app.</Description>
+    <!-- Numbers are written with the invariant culture, so the app needs no culture data (and no libicu on Linux). -->
+    <InvariantGlobalization>true</InvariantGlobalization>
+    <!-- Release builds (release.yml): dotnet publish -r RID gives one self-contained, trimmed file per runtime identifier. -->
+    <RuntimeIdentifiers>win-x64;win-arm64;linux-x64;linux-arm64;osx-x64;osx-arm64</RuntimeIdentifiers>
+    <SelfContained Condition="'$(RuntimeIdentifier)' != ''">true</SelfContained>
+    <PublishSingleFile Condition="'$(RuntimeIdentifier)' != ''">true</PublishSingleFile>
+    <PublishTrimmed Condition="'$(RuntimeIdentifier)' != ''">true</PublishTrimmed>
+    <IsTrimmable>true</IsTrimmable>
+    <EnableTrimAnalyzer>true</EnableTrimAnalyzer>
+    <DebugType>embedded</DebugType>
+    <!-- NativeMethods.GetStdHandle: the LibraryImport source generator emits unsafe code. -->
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="../FizzBuzzLibrary/FizzBuzzLibrary.csproj" />
+    <InternalsVisibleTo Include="FizzBuzzLibrary.Tests" />
+  </ItemGroup>
+
+</Project>

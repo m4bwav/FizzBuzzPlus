@@ -1,0 +1,31 @@
+<!-- From the package-modernize NuGet template (TrailerClipper 2.0.0 and CachingServiceWithAOPSupport 2.0.0), adapted for a
+     repository that publishes no package: no Source Link, symbols or pack settings. The golden capture's folder
+     (tests/Golden) has empty Directory.* files of its own, so these settings never reach the recording's programs. -->
+<Project>
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <EnableNETAnalyzers>true</EnableNETAnalyzers>
+    <AnalysisLevel>latest-recommended</AnalysisLevel>
+    <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <!-- packages.lock.json per project; CI restores in locked mode so the cache key is stable. -->
+    <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
+    <IsPackable>false</IsPackable>
+    <Deterministic>true</Deterministic>
+    <ContinuousIntegrationBuild Condition="'$(GITHUB_ACTIONS)' == 'true'">true</ContinuousIntegrationBuild>
+    <Version>2.0.0</Version>
+    <Authors>Mark Rogers</Authors>
+    <Copyright>Copyright (c) 2014-2026 Mark Rogers</Copyright>
+    <Product>FizzBuzzPlus</Product>
+    <RepositoryUrl>https://github.com/m4bwav/FizzBuzzPlus</RepositoryUrl>
+    <!-- A new advisory in a test or build package warns locally; the CI audit step (AuditPipeline) fails on it. -->
+    <WarningsNotAsErrors>$(WarningsNotAsErrors);NU1901;NU1902;NU1903;NU1904</WarningsNotAsErrors>
+    <WarningsAsErrors Condition="'$(AuditPipeline)' == 'true'">$(WarningsAsErrors);NU1901;NU1902;NU1903;NU1904</WarningsAsErrors>
+  </PropertyGroup>
+
+</Project>
