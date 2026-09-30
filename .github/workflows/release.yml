@@ -1,0 +1,208 @@
+# A tag v<version> on a master commit whose ci passed: builds and tests, publishes the program for six platforms (one
+# self-contained, trimmed file each, built on its own OS and run there when the runner's CPU matches), writes SHA256SUMS,
+# attests every archive, then waits at the `release` environment for the maintainer's approval (Review deployments on the
+# run). Only then is the GitHub Release created, with the changelog section and the archives. No registry is involved.
+# The repository variant of the package-modernize NuGet release.yml (IsImageUrlDotNet and CachingServiceWithAOPSupport
+# 2.0.0): the same tag, master and ci checks, the publish job replaced by per-platform builds and a gated Release.
+name: release
+
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: read
+
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  check:
+    name: check the tag and test the tagged commit
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    permissions:
+      contents: read
+      checks: read
+    outputs:
+      version: ${{ steps.version.outputs.version }}
+      prerelease: ${{ steps.version.outputs.prerelease }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-dotnet@a98b56852c35b8e3190ac28c8c2271da59106c68 # v6.0.0
+        with:
+          global-json-file: global.json
+      - name: The tag must equal the project's version
+        id: version
+        env:
+          TAG: ${{ github.ref_name }}
+        run: |
+          version=$(sed -n 's:.*<Version>\(.*\)</Version>.*:\1:p' Directory.Build.props)
+          if [ "$TAG" != "v$version" ]; then
+            echo "::error::tag $TAG and the version in Directory.Build.props ($version) must agree"
+            exit 1
+          fi
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+          if [[ "$version" == *-* ]]; then echo "prerelease=true" >> "$GITHUB_OUTPUT"; else echo "prerelease=false" >> "$GITHUB_OUTPUT"; fi
+      - name: The tagged commit is on master
+        run: |
+          git fetch --no-tags origin master
+          if ! git merge-base --is-ancestor "$GITHUB_SHA" FETCH_HEAD; then
+            echo "::error::$GITHUB_SHA is not on master; tag only commits on master, after ci is green"
+            exit 1
+          fi
+      - name: Release notes from the changelog
+        env:
+          VERSION: ${{ steps.version.outputs.version }}
+        run: |
+          # A prerelease (2.0.0-beta.1) takes the notes of the version it rehearses (2.0.0), dated or not.
+          base="${VERSION%%-*}"
+          notes=$(awk -v heading="## [$base]" '
+            /^## / { if (found) exit; found = (index($0, heading) == 1); next }
+            found { print }
+          ' CHANGELOG.md)
+          if [ -z "$notes" ]; then
+            echo "::error::CHANGELOG.md has no section for $base"
+            exit 1
+          fi
+          if [[ "$VERSION" != *-* ]] && ! grep -Eq "^## \[${VERSION//./\\.}\] - [0-9]{4}-[0-9]{2}-[0-9]{2}" CHANGELOG.md; then
+            echo "::error::the CHANGELOG.md heading for $VERSION has no date"
+            exit 1
+          fi
+          printf '%s\n' "$notes" > release-notes.md
+      - name: ci passed on the tagged commit
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          passed=$(gh api "repos/$GITHUB_REPOSITORY/commits/$GITHUB_SHA/check-runs?check_name=ci" --jq '[.check_runs[] | select(.conclusion == "success")] | length')
+          if [ "$passed" = 0 ]; then
+            echo "::error::no successful ci check on $GITHUB_SHA; wait for ci on master, then tag"
+            exit 1
+          fi
+      - name: The golden recordings are unchanged since the Phase 0 commit
+        run: git diff --exit-code 2835ec0 -- tests/Golden
+      - run: dotnet restore --locked-mode
+      - run: dotnet build --no-restore -c Release
+      - run: dotnet test --no-build -c Release
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: release-notes
+          path: release-notes.md
+          if-no-files-found: error
+
+  publish:
+    name: publish ${{ matrix.rid }}
+    needs: check
+    strategy:
+      fail-fast: true
+      matrix:
+        include:
+          - { rid: linux-x64, os: ubuntu-24.04, run: true }
+          - { rid: linux-arm64, os: ubuntu-24.04, run: false }
+          - { rid: win-x64, os: windows-latest, run: true }
+          - { rid: win-arm64, os: windows-latest, run: false }
+          - { rid: osx-arm64, os: macos-latest, run: true }
+          - { rid: osx-x64, os: macos-latest, run: false }
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-dotnet@a98b56852c35b8e3190ac28c8c2271da59106c68 # v6.0.0
+        with:
+          global-json-file: global.json
+      - name: Publish and archive
+        env:
+          RID: ${{ matrix.rid }}
+          VERSION: ${{ needs.check.outputs.version }}
+          RUN: ${{ matrix.run }}
+        run: |
+          dotnet publish src/FizzBuzzWithOutput -c Release -r "$RID" -p:RestoreLockedMode=true -o publish
+          name="fizzbuzzplus-$VERSION-$RID"
+          mkdir -p "stage/$name" dist
+          if [[ "$RID" == win-* ]]; then exe=fizzbuzzplus.exe; else exe=fizzbuzzplus; fi
+          cp "publish/$exe" LICENSE README.md CHANGELOG.md "stage/$name/"
+          if [ "$RUN" = true ]; then
+            "stage/$name/$exe" 13 15 > smoke.txt
+            printf 'Current Number: 13 \nCurrent Number: 14 \nCurrent Number: 15 FizzBuzz\n' > expected.txt
+            cmp smoke.txt expected.txt
+          fi
+          if [[ "$RID" == win-* ]]; then
+            (cd stage && 7z a -tzip "../dist/$name.zip" "$name" > /dev/null)
+          else
+            chmod +x "stage/$name/$exe"
+            tar -czf "dist/$name.tar.gz" -C stage "$name"
+          fi
+          ls -l dist
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: dist-${{ matrix.rid }}
+          path: dist/*
+          if-no-files-found: error
+
+  attest:
+    name: checksums and build provenance
+    needs: publish
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      id-token: write
+      attestations: write
+    steps:
+      - uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+        with:
+          pattern: dist-*
+          path: dist
+          merge-multiple: true
+      - name: SHA256SUMS
+        run: |
+          (cd dist && sha256sum -- * > SHA256SUMS)
+          cat dist/SHA256SUMS
+          test "$(wc -l < dist/SHA256SUMS)" -eq 6
+      - uses: actions/attest-build-provenance@4d101475d8b20a2381f78447822ac1eab6504dd8 # v4.2.2
+        with:
+          subject-checksums: dist/SHA256SUMS
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: release-assets
+          path: dist/*
+          if-no-files-found: error
+
+  github-release:
+    name: GitHub Release (after approval)
+    needs: [check, attest]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    # The human gate: the run waits here until the maintainer approves the `release` environment.
+    environment: release
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+        with:
+          name: release-assets
+          path: dist
+      - uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+        with:
+          name: release-notes
+      - name: Create the Release with the changelog section and the archives
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ github.ref_name }}
+          PRERELEASE: ${{ needs.check.outputs.prerelease }}
+        run: |
+          flags=()
+          if [ "$PRERELEASE" = true ]; then
+            flags+=(--prerelease)
+          fi
+          gh release create "$TAG" --repo "$GITHUB_REPOSITORY" --verify-tag --title "$TAG" --notes-file release-notes.md "${flags[@]}" dist/*

@@ -134,6 +134,9 @@
       "fizzbuzzlibrary": {
         "type": "Project"
       },
+      "fizzbuzzlibrary.original2014": {
+        "type": "Project"
+      },
       "fizzbuzzplus": {
         "type": "Project",
         "dependencies": {

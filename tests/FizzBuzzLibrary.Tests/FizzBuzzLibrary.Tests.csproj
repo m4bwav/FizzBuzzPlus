@@ -22,6 +22,8 @@
   <ItemGroup>
     <ProjectReference Include="../../src/FizzBuzzLibrary/FizzBuzzLibrary.csproj" />
     <ProjectReference Include="../../src/FizzBuzzWithOutput/FizzBuzzWithOutput.csproj" />
+    <!-- The frozen 2014 source as an assembly of its own, for the differential test. -->
+    <ProjectReference Include="../FizzBuzzLibrary.Original2014/FizzBuzzLibrary.Original2014.csproj" Aliases="Original2014" />
   </ItemGroup>
 
   <ItemGroup>
