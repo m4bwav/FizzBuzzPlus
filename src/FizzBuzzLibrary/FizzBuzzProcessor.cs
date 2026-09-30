@@ -27,7 +27,8 @@ namespace FizzBuzzLibrary
         /// <param name="outputBreaks">
         /// The rules: each divisor and the word written for a number it divides. The rules are copied and sorted by divisor
         /// here, so later changes to the dictionary have no effect. A negative divisor matches the multiples of its absolute
-        /// value. A null or empty word writes nothing.
+        /// value. A null or empty word writes nothing (the parameter type stays <c>IDictionary&lt;long, string&gt;</c> as in
+        /// 1.0.0, so a nullable-aware caller passes a null word with <c>null!</c>).
         /// </param>
         /// <param name="writer">Where the lines are written.</param>
         /// <exception cref="ArgumentNullException"><paramref name="outputBreaks"/> or <paramref name="writer"/> is null.</exception>

@@ -38,9 +38,17 @@ A repository that was never published to a registry: an example site, a kata, a 
 - Test framework: prefer the one the old tests compile under unchanged, so the old author's expectations stay part of the contract.
 - The release question has three answers: **none** (source only; phases 5 and 6 skipped), **a GitHub Release** of built artifacts (below), or **publish** to a registry (the package phases, with a policy that allows new packages).
 
-## Phases 2 to 4 (unchanged from the skill; *unproven* here until the run reaches them)
+## Phase 2: rewrite (proven on FizzBuzzPlus, 2026-09-29)
 
-The rewrite, the independent review, CI, settings and cleanup run as for a package. What differs: no pack step, no package validation baseline, no registry audit of a published version, and the golden replay also drives the app.
+- The replay compiles the capture's Cases file unchanged against the new code. It also drives the new app, through the same case functions, by pointing the capture's app path at the new build. The app project is referenced from the replay's test project, so its dll lands in the test output.
+- The ruled exceptions live in one file beside the replay (`Exceptions/<version>.json`), one entry per case with its change id. The file is made from the replay's own difference list, written only when an environment variable asks for it, then reviewed case by case. Copying the replay's text keeps the escapes byte-exact. The replay fails on an unlisted difference, on a listed case that no longer differs, and on a change id the plan does not have. One file serves every OS when the new answers are the same everywhere.
+- The old tests compile unchanged into the new test project by link, when the test framework allows it (MSTest here). The frozen old source compiles into an assembly of its own, referenced under an extern alias, for a differential test that runs both on random inputs. Keep the generator's ranges from wrapping: at the edges of `long`, a negative length turned into a range of 2^64 numbers.
+- A program released per runtime identifier: list the RIDs in the program and in every project it references, or a locked-mode `dotnet publish -r RID` fails with NU1004 on the library's lock file. Then publish every RID in CI too (one per runner OS) and run the binary.
+- Workflows for a repository without a registry: ci.yml without pack and consumers, and with a publish and smoke run; release.yml and verify-release.yml as described under Phases 5 and 6.
+
+## Phases 3 and 4 (unchanged from the skill; *unproven* here until the run reaches them)
+
+The independent review, CI, settings and cleanup run as for a package. The settings and rulesets can be applied at the plan review when the maintainer approves them there, which puts them in place before the pull request exists.
 
 ## Phases 5 and 6: a gated GitHub Release instead of a registry (*unproven*)
 

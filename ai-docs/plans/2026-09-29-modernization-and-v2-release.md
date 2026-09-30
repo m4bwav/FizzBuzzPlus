@@ -15,7 +15,7 @@ This plan takes FizzBuzzPlus from its 2014 state (Visual Studio 2012, .NET Frame
 
 ## Status
 
-Active, Phase 2 (2026-09-29). Rulings at the plan review, 2026-09-29: every recommendation D0 to D16 and E1 to E7 stands, and the GitHub writes were approved ("do all the recommendations and tags"); the settings, rulesets, `release` environment and `v1.0.0` tag are in place (log).
+Active, Phase 3 (2026-09-29): pull request #1 open, independent review running. Rulings at the plan review, 2026-09-29: every recommendation D0 to D16 and E1 to E7 stands, and the GitHub writes were approved ("do all the recommendations and tags"); the settings, rulesets, `release` environment and `v1.0.0` tag are in place (log).
 
 ## Goal
 
@@ -116,14 +116,14 @@ Unchanged surface (the `api` case of the recording must still hold every line):
 ### Phase 1: plan
 - [x] This plan and the decision record [../decisions/2026-09-29-modernize-as-2.0.0-with-a-github-release.md](../decisions/2026-09-29-modernize-as-2.0.0-with-a-github-release.md). **Stop**: the maintainer rules on the tables; the questions below.
 ### Phase 2: rewrite on branch v2
-- [ ] Remove the old projects; add the templates (adapted for net10.0 only, no pack); LICENSE; `.gitignore`
-- [ ] Golden test first, green on the first build apart from the E1 to E7 table; canary: a planted line in src/ turns it red, reverted, green (both runs logged); golden files unchanged since the Phase 0 commit (`git diff --exit-code`)
-- [ ] The library (E1 to E6), the app (E7, D12), the unit tests, the 2014 tests by link, README, CHANGELOG (first paragraph: the promise and E1 to E7), SECURITY.md, AGENTS.md
-- [ ] Verified locally and from a fresh clone with the workflow's exact commands; `dotnet publish` for one runtime identifier run and checked
-- [ ] Workflows and Dependabot from the templates, actions pinned to SHAs, actionlint with shellcheck, zizmor, `check-workflow-shell.py` clean
-- [ ] Pushed; pull request opened with a "For review" list
+- [x] Remove the old projects; add the templates (adapted for net10.0 only, no pack); LICENSE; `.gitignore`
+- [x] Golden test first, green on the first build apart from the E1 to E7 table; canary: a planted line in src/ turns it red, reverted, green (both runs logged); golden files unchanged since the Phase 0 commit (`git diff --exit-code`)
+- [x] The library (E1 to E6), the app (E7, D12), the unit tests, the 2014 tests by link, README, CHANGELOG (first paragraph: the promise and E1 to E7), SECURITY.md, AGENTS.md
+- [x] Verified locally and from a fresh clone with the workflow's exact commands; `dotnet publish` for one runtime identifier run and checked
+- [x] Workflows and Dependabot from the templates, actions pinned to SHAs, actionlint with shellcheck, zizmor, `check-workflow-shell.py` clean
+- [x] Pushed; pull request opened with a "For review" list
 ### Phase 3: review
-- [ ] Independent read-only review (prompts/review-subagent.md, with a differential fuzz against the frozen 2014 source); findings fixed or answered; summary on the pull request; D15 settings and rulesets applied. **Stop: pull request review.**
+- [x] Independent read-only review (prompts/review-subagent.md, with a differential fuzz against the frozen 2014 source); findings fixed or answered; summary on the pull request; D15 settings and rulesets applied. **Stop: pull request review.**
 ### Phase 4: CI, settings, merge, cleanup
 - [ ] CI green (run id); merge after the maintainer's review (read the SHA and method back); `v1.0.0` tag on d13d130; the golden-capture branch deleted (with the OK); repository metadata
 ### Phase 5: release rehearsal (replaces the registry rehearsal)

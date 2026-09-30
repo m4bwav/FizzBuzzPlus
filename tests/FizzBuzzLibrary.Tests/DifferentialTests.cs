@@ -12,7 +12,7 @@ namespace FizzBuzzLibrary.Tests
 {
     /// <summary>
     /// The new FizzBuzzProcessor against the frozen 2014 one on seeded random rules and ranges, outside the inputs the plan
-    /// changed on purpose (E1 to E6): no rule of 0, no rule of -1 with long.MinValue, no range ending at long.MaxValue, the
+    /// changed on purpose (E1 to E6): no rule of 0, no rule of -1 when the range starts at long.MinValue, no range ending at long.MaxValue, the
     /// rules not changed after construction, the invariant culture. Every output must be the same text (skill L-052).
     /// </summary>
     [TestClass]
@@ -33,6 +33,11 @@ namespace FizzBuzzLibrary.Tests
                 {
                     var rules = RandomRules(random);
                     var (start, end) = RandomRange(random);
+                    if (start == long.MinValue)
+                    {
+                        // E4: the 2014 code overflows on long.MinValue with a rule of -1; everywhere else -1 is compared.
+                        rules.Remove(-1);
+                    }
                     Assert.AreEqual(Old(rules, start, end), New(rules, start, end), "seed " + seed + ", case " + i + ", range " + start + " to " + end + ", rules " + Describe(rules));
                 }
             }
@@ -60,7 +65,7 @@ namespace FizzBuzzLibrary.Tests
             while (rules.Count < count)
             {
                 long divisor = random.Next(0, 10) == 0 ? random.NextInt64(long.MinValue, long.MaxValue) : random.Next(-30, 31);
-                if (divisor == 0 || divisor == -1)
+                if (divisor == 0)
                 {
                     continue;
                 }

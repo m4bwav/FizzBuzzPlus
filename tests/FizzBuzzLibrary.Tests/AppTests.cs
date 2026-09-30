@@ -1,6 +1,8 @@
 using System;
+using System.Diagnostics;
 using System.Globalization;
 using System.IO;
+using System.Text;
 using FizzBuzzWithOutput;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -102,6 +104,66 @@ namespace FizzBuzzLibrary.Tests
             {
                 Assert.IsLessThanOrEqualTo(110, line.Length, line);
             }
+        }
+
+        private static Process StartApp(params string[] args)
+        {
+            var info = new ProcessStartInfo("dotnet")
+            {
+                UseShellExecute = false,
+                RedirectStandardInput = true,
+                RedirectStandardOutput = true,
+                RedirectStandardError = true,
+                StandardOutputEncoding = new UTF8Encoding(false),
+                StandardErrorEncoding = new UTF8Encoding(false),
+            };
+            info.ArgumentList.Add(Path.Combine(AppContext.BaseDirectory, "fizzbuzzplus.dll"));
+            foreach (var arg in args)
+            {
+                info.ArgumentList.Add(arg);
+            }
+
+            var process = Process.Start(info)!;
+            process.StandardInput.Close();
+            return process;
+        }
+
+        private static (int Code, string Output, string Error) RunApp(params string[] args)
+        {
+            using var process = StartApp(args);
+            var output = process.StandardOutput.ReadToEndAsync();
+            var error = process.StandardError.ReadToEndAsync();
+            Assert.IsTrue(process.WaitForExit(60000), "the program did not end");
+            process.WaitForExit();
+            return (process.ExitCode, output.Result, error.Result);
+        }
+
+        [TestMethod]
+        public void The_real_program_writes_UTF8_and_line_feeds_and_exits_0()
+        {
+            Assert.AreEqual((0, "Current Number: 3 é−\nCurrent Number: 4 \n", string.Empty), RunApp("3", "4", "--rule", "3=é−"));
+        }
+
+        [TestMethod]
+        public void The_real_program_exits_2_with_the_usage_on_standard_error()
+        {
+            var (code, output, error) = RunApp("1", "2", "3");
+            Assert.AreEqual(2, code);
+            Assert.AreEqual(string.Empty, output);
+            Assert.StartsWith("fizzbuzzplus: at most two numbers", error);
+        }
+
+        [TestMethod]
+        public void The_real_program_stops_quietly_when_the_reader_closes_the_pipe()
+        {
+            // Without broken-pipe handling this range would run for centuries (review finding 1 on Linux).
+            using var process = StartApp("1", "9223372036854775807");
+            var error = process.StandardError.ReadToEndAsync();
+            Assert.AreEqual("Current Number: 1 ", process.StandardOutput.ReadLine());
+            process.StandardOutput.Close();
+            Assert.IsTrue(process.WaitForExit(30000), "the program kept writing after the reader left");
+            Assert.AreEqual(0, process.ExitCode);
+            Assert.AreEqual(string.Empty, error.Result);
         }
 
         [TestMethod]

@@ -4,6 +4,7 @@ using System.Globalization;
 using System.IO;
 using System.Text;
 using FizzBuzzLibrary;
+using Microsoft.Win32.SafeHandles;
 
 namespace FizzBuzzWithOutput
 {
@@ -11,6 +12,7 @@ namespace FizzBuzzWithOutput
     internal static class Program
     {
         internal const int Ok = 0;
+        internal const int WriteError = 1;
         internal const int UsageError = 2;
 
         internal static readonly string[] Usage =
@@ -32,18 +34,55 @@ namespace FizzBuzzWithOutput
 
         private static int Main(string[] args)
         {
-            using var stdout = new StreamWriter(Console.OpenStandardOutput(), new UTF8Encoding(false), 65536);
+            // Messages are collected first and written at the end, so a failing standard error cannot change the exit code.
+            using var errors = new StringWriter(CultureInfo.InvariantCulture);
+            int code;
             try
             {
-                var code = Run(args, stdout, Console.Error);
+                using var stdout = new StreamWriter(OpenStandardOutput(), new UTF8Encoding(false), 65536);
+                code = Run(args, stdout, errors);
                 stdout.Flush();
-                return code;
             }
-            catch (IOException)
+            catch (IOException e) when (IsBrokenPipe(e))
             {
                 // The reader went away (fizzbuzzplus 1 1000000 | head): stop quietly, as other command-line tools do.
-                return Ok;
+                code = Ok;
             }
+            catch (Exception e) when (e is IOException or UnauthorizedAccessException or ArgumentException)
+            {
+                // A full disk, a closed standard output: the lines are lost, so say so and fail.
+                errors.WriteLine("fizzbuzzplus: cannot write the output: " + e.Message);
+                code = WriteError;
+            }
+
+            try
+            {
+                Console.Error.Write(errors.ToString());
+                Console.Error.Flush();
+            }
+            catch (Exception e) when (e is IOException or UnauthorizedAccessException)
+            {
+                // Nowhere left to report it; the exit code still tells.
+            }
+
+            return code;
+        }
+
+        // The stream Console.OpenStandardOutput() returns ignores a closed pipe (EPIPE on Unix, ERROR_NO_DATA and
+        // ERROR_BROKEN_PIPE on Windows), so `fizzbuzzplus 1 9223372036854775807 | head -1` would never end. A FileStream on
+        // the standard output handle reports it as an IOException instead.
+        private static FileStream OpenStandardOutput()
+        {
+            var handle = OperatingSystem.IsWindows() ? NativeMethods.GetStdHandle(NativeMethods.StdOutputHandle) : 1;
+            return new FileStream(new SafeFileHandle(handle, ownsHandle: false), FileAccess.Write, 1);
+        }
+
+        private static bool IsBrokenPipe(IOException e)
+        {
+            var code = e.HResult & 0xFFFF;
+            return OperatingSystem.IsWindows()
+                ? code is 109 or 232 // ERROR_BROKEN_PIPE, ERROR_NO_DATA
+                : code == 32; // EPIPE
         }
 
         /// <summary>Parses the arguments and writes the lines; returns the exit code.</summary>

@@ -52,7 +52,7 @@ jobs:
           gh release download "$TAG" --repo "$GITHUB_REPOSITORY" --pattern "$archive" --pattern SHA256SUMS
           line=$(grep -F "  $archive" SHA256SUMS)
           if command -v sha256sum > /dev/null; then echo "$line" | sha256sum -c -; else echo "$line" | shasum -a 256 -c -; fi
-          gh attestation verify "$archive" --repo "$GITHUB_REPOSITORY" --signer-workflow "$GITHUB_REPOSITORY/.github/workflows/release.yml" --format json > attestation.json
+          gh attestation verify "$archive" --repo "$GITHUB_REPOSITORY" --signer-workflow "$GITHUB_REPOSITORY/.github/workflows/release.yml" --source-ref "refs/tags/$TAG" --format json > attestation.json
           echo "attestation verified: $(wc -c < attestation.json) bytes"
           if [[ "$archive" == *.zip ]]; then unzip -q "$archive"; else tar -xzf "$archive"; fi
           test -f "$name/$exe" && test -f "$name/LICENSE"
