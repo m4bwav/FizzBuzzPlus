@@ -27,3 +27,10 @@ Append-only. One line per operation: `## [YYYY-MM-DD] op | title` where op is on
 - Stop: the plan review.
 ## [2026-09-29] index | rebuilt (4 entries)
 ## [2026-09-29] index | rebuilt (4 entries)
+
+## [2026-09-29] update | Plan review: every recommendation stands; GitHub writes done
+- The maintainer, in the session: "fall the plan do all the recommendations and tags and shit, hopefully there's barely shit for me to d" (read as: follow the plan, every recommendation D0 to D16 and E1 to E7 stands, and go for the listed GitHub writes).
+- Rulesets: 24218995 `master` (deletion, non-fast-forward, required check `ci`, admin bypass; copied from DotNetRandomNameGenerator's 24095614), 24218996 `Tags only by admins` (the skill's template), both active.
+- Settings: secret scanning and push protection enabled, delete branch on merge true, Dependabot alerts and security updates on, private vulnerability reporting on, default workflow permissions read with `can_approve_pull_request_reviews: false`; description, topics (fizzbuzz, csharp, dotnet, kata, console-app) and homepage (the Releases page) set.
+- Environment `release`: required reviewer m4bwav, deployment policy tag `v*`.
+- Tag `v1.0.0` (annotated, 83f25bb) on d13d130, pushed; no release. Scratch branch `golden-capture` deleted on origin and locally (was 93f2852).

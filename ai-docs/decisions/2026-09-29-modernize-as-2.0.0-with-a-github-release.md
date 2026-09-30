@@ -1,12 +1,12 @@
 ---
 title: Modernize as 2.0.0, released as a GitHub Release, not a package
 kind: decision
-status: proposed
+status: accepted
 date: 2026-09-29
 verified: 2026-09-29
 stale_after: never
 tags: [v2, decision, compatibility, golden, repository-variant, release]
-summary: "proposed at the plan review: modernize rather than archive; the frozen 2014 source is the contract, compared per OS on net10.0 with seven named exceptions; no registry, a gated GitHub Release of the console app for six runtime identifiers; MSTest 4 so the 2014 tests compile unchanged"
+summary: "accepted at the plan review (2026-09-29, every recommendation stands): modernize rather than archive; the frozen 2014 source is the contract, compared per OS on net10.0 with seven named exceptions; no registry, a gated GitHub Release of the console app for six runtime identifiers; MSTest 4 so the 2014 tests compile unchanged"
 ---
 
 # Modernize as 2.0.0, released as a GitHub Release, not a package
@@ -15,7 +15,7 @@ summary: "proposed at the plan review: modernize rather than archive; the frozen
 
 FizzBuzzPlus was written in 2014 for .NET Framework 4.5 and never published. Its solution no longer builds on a machine with only the .NET 10 SDK. It is the first repository the package-modernize skill runs on that is not a package, so there is no published artifact to capture and no registry to release to.
 
-## Decision (proposed; the maintainer rules in the plan review)
+## Decision (accepted 2026-09-29)
 
 - **Modernize** (not archive, not delete), as **2.0.0**, with the 2014 commit tagged `v1.0.0`.
 - **The contract is the frozen 2014 source.** Byte-exact copies of the four 2014 files live in `tests/Golden/Original` (git blob ids checked by the capture script). The capture compiles them unchanged, and the recordings are kept per runtime and OS. v2 on net10.0 is compared with the net10.0 recording of the OS it runs on. The seven named exceptions (E1 to E7 in the plan) are the only allowed differences. The net48 recording is kept as the 2014 runtime's answer and is not replayed.

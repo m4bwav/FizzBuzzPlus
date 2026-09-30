@@ -15,7 +15,7 @@ This plan takes FizzBuzzPlus from its 2014 state (Visual Studio 2012, .NET Frame
 
 ## Status
 
-Active. Phase 1 done on 2026-09-29; **waiting at the plan review** for the maintainer's rulings on D0 to D16 and E1 to E7 (silence means the recommendations stand) and for the go on the GitHub questions under "Questions for the plan review".
+Active, Phase 2 (2026-09-29). Rulings at the plan review, 2026-09-29: every recommendation D0 to D16 and E1 to E7 stands, and the GitHub writes were approved ("do all the recommendations and tags"); the settings, rulesets, `release` environment and `v1.0.0` tag are in place (log).
 
 ## Goal
 

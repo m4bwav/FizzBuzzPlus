@@ -1,0 +1,10 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/FizzBuzzLibrary/FizzBuzzLibrary.csproj" />
+    <Project Path="src/FizzBuzzWithOutput/FizzBuzzWithOutput.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/FizzBuzzLibrary.Tests/FizzBuzzLibrary.Tests.csproj" />
+    <Project Path="tests/FizzBuzzLibrary.GoldenTests/FizzBuzzLibrary.GoldenTests.csproj" />
+  </Folder>
+</Solution>
