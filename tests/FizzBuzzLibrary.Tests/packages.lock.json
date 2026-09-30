@@ -140,7 +140,7 @@
       "fizzbuzzplus": {
         "type": "Project",
         "dependencies": {
-          "FizzBuzzLibrary": "[2.0.0, )"
+          "FizzBuzzLibrary": "[2.0.0-beta.1, )"
         }
       }
     }

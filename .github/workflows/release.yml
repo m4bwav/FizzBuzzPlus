@@ -187,6 +187,9 @@ jobs:
     environment: release
     permissions:
       contents: write
+      # A Release created with the GITHUB_TOKEN starts no other workflow (only workflow_dispatch is exempt), so
+      # verify-release.yml's `release: published` trigger fires only for a Release made by hand. This job starts it.
+      actions: write
     steps:
       - uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
         with:
@@ -206,3 +209,8 @@ jobs:
             flags+=(--prerelease)
           fi
           gh release create "$TAG" --repo "$GITHUB_REPOSITORY" --verify-tag --title "$TAG" --notes-file release-notes.md "${flags[@]}" dist/*
+      - name: Start verify-release for this tag
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ github.ref_name }}
+        run: gh workflow run verify-release.yml --repo "$GITHUB_REPOSITORY" --ref master -f tag="$TAG"

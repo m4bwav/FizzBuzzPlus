@@ -1,4 +1,5 @@
-# After a Release is published (or by hand for any tag): downloads each platform's archive from the Release on a fresh
+# Started by release.yml's last step (a Release made with the GITHUB_TOKEN fires no `release` event), by a Release
+# published by hand, or by hand for any tag: downloads each platform's archive from the Release on a fresh
 # runner of that platform, checks it against SHA256SUMS and its build provenance attestation (made by release.yml in
 # this repository), unpacks it and runs the program. osx-x64 has no free hosted runner, so it is checked but not run.
 # The repository variant's verify-published: the Release is the registry.
