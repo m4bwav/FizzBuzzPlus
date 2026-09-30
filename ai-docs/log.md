@@ -51,3 +51,11 @@ Append-only. One line per operation: `## [YYYY-MM-DD] op | title` where op is on
 - The new closed-pipe test first left its child running when it failed (a range to long.MaxValue); the child was found by command line and stopped by PID. The editor tool decoded a backslash-u escape typed in AppTests.cs into the literal character (skill L-050 again); harmless in a UTF-8 source, noted.
 - 60 of 60 tests; format, actionlint with shellcheck, zizmor clean; trimmed win-x64 publish without warnings.
 ## [2026-09-29] index | rebuilt (4 entries)
+
+## [2026-09-29] add | Phase 4: pull request #1 merged; Phase 5 started
+- Pull request #1 merged by m4bwav at 2026-09-30T01:05:49Z (UTC) as merge commit 7c567fd (method: a merge commit, not a squash; read back with `gh pr view 1 --json mergeCommit,mergedAt`). Branch v2 deleted on origin by the delete-on-merge setting, and locally.
+- ci run 36653471093 on master 7c567fd: success. No open issues or pull requests; Dependabot Updates runs on master succeeded.
+- Phase 4 items already done at the plan review (log above): rulesets, security settings, the `release` environment, tag v1.0.0, the golden-capture branch deleted.
+- Found before tagging: release.yml creates the Release with the GITHUB_TOKEN, and events made with that token start no other workflow (only workflow_dispatch and repository_dispatch are exempt), so verify-release.yml would never have run from `release: published`. Fix on branch release-2.0.0-beta.1: the github-release job gets `actions: write` and ends with `gh workflow run verify-release.yml --ref master -f tag=$TAG`.
+- Version 2.0.0-beta.1 in Directory.Build.props. The lock files of the two test projects record the project reference as `[2.0.0, )`, so `dotnet restore --force-evaluate` rewrote them (a locked restore would fail with NU1004 otherwise); three other lock files changed only in line endings and were reverted.
+- ci.yml commands locally in order: golden unchanged since 2835ec0, locked restore, format, build, audit restore, test: 60 of 60, exit 0. actionlint 1.7.12 with shellcheck, check-workflow-shell.py, zizmor 1.30.1 offline: all clean.
