@@ -125,7 +125,7 @@ Unchanged surface (the `api` case of the recording must still hold every line):
 ### Phase 3: review
 - [x] Independent read-only review (prompts/review-subagent.md, with a differential fuzz against the frozen 2014 source); findings fixed or answered; summary on the pull request; D15 settings and rulesets applied. **Stop: pull request review.**
 ### Phase 4: CI, settings, merge, cleanup
-- [ ] CI green (run id); merge after the maintainer's review (read the SHA and method back); `v1.0.0` tag on d13d130; the golden-capture branch deleted (with the OK); repository metadata
+- [x] CI green (run 36653471093 on master 7c567fd; #1 merged by m4bwav as a merge commit); merge after the maintainer's review (read the SHA and method back); `v1.0.0` tag on d13d130; the golden-capture branch deleted (with the OK); repository metadata
 ### Phase 5: release rehearsal (replaces the registry rehearsal)
 - [ ] The maintainer creates nothing on a registry; the `release` environment exists with him as required reviewer (the run creates it; he checks it). `v2.0.0-beta.1` tagged after `ci` is green on master; the Release job waits; **stop** for the approval; `verify-release.yml` green (run id)
 ### Phase 6: release
