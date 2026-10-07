@@ -1,5 +1,7 @@
 # FizzBuzzPlus
 
+![A tall glass of sparkling soda fizzing with colorful bubbles while cheerful bumblebees buzz around it, playful and bright](https://raw.githubusercontent.com/m4bwav/FizzBuzzPlus/master/.github/images/banner.jpg)
+
 [![ci](https://github.com/m4bwav/FizzBuzzPlus/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/m4bwav/FizzBuzzPlus/actions/workflows/ci.yml)
 [![Latest release](https://img.shields.io/github/v/release/m4bwav/FizzBuzzPlus?sort=semver)](https://github.com/m4bwav/FizzBuzzPlus/releases/latest)
 
